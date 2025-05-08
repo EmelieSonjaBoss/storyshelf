@@ -10,6 +10,8 @@ app.use(express.json());
 app.use(cors());
 
 // ROUTES
+import userRouter from "./routes/users";
+app.use("/users", userRouter);
 
 // CONNECT TO DATABASE
 
