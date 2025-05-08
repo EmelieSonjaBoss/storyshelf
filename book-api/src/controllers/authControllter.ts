@@ -2,7 +2,35 @@ import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import User from "../models/User";
 
-export const register = async () => {};
+// REGISTER
+export const register = async (req: Request, res: Response) => {
+  const { username, password, is_admin } = req.body;
+
+  if (username === undefined) {
+    res.status(400).json({ error: "Username is required" });
+    return;
+  }
+
+  if (password === undefined) {
+    res.status(400).json({ error: "Password is required" });
+    return;
+  }
+
+  if (is_admin === undefined) {
+    res.status(400).json({ error: "Admin status is required" });
+    return;
+  }
+
+  try {
+    const newUser = await User.create({ username, password, is_admin });
+    res.json(newUser);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    res.status(500).json({ error: message });
+  }
+};
+
+// LOGIN
 
 export const login = async (req: Request, res: Response) => {
   const { username, password } = req.body;
@@ -37,6 +65,8 @@ export const login = async (req: Request, res: Response) => {
     res.status(500).json({ error: message });
   }
 };
+
+// LOGOUT
 
 export const logout = async (req: Request, res: Response) => {
   res.clearCookie("accessToken");
