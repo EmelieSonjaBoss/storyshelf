@@ -55,3 +55,18 @@ export const updateUser = async (req: Request, res: Response) => {
 };
 
 // DELETE USER BY ID
+
+export const deleteUser = async (req: Request, res: Response) => {
+  try {
+    const deletedUser = await User.deleteOne({ _id: req.params.id });
+
+    if (deletedUser.deletedCount === 0) {
+      res.status(400).json({ success: false, message: "User not found" });
+      return;
+    }
+    res.json({ message: "User deleted" });
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    res.status(500).json({ error: message });
+  }
+};
