@@ -17,7 +17,9 @@ app.use(
 
 // ROUTES
 import userRouter from "./routes/users";
+import authRouter from "./routes/auth";
 app.use("/users", userRouter);
+app.use("/auth", authRouter);
 
 // CONNECT TO DATABASE
 
