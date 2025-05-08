@@ -1,10 +1,13 @@
 import "dotenv/config";
 import express from "express";
+import cors from "cors";
 import mongoose from "mongoose";
 
 const app = express();
 
 // MIDDLEWARE
+app.use(express.json());
+app.use(cors());
 
 // ROUTES
 
