@@ -1,3 +1,8 @@
+/**
+ * @module models/Book
+ * @description Mongoose model definition for the book collection.
+ */
+
 import mongoose, { Schema } from 'mongoose'; // It differs from User here <---
 import { IBook } from '../types/IBook';
 
@@ -17,7 +22,7 @@ const BookSchema: Schema = new Schema<IBook>({
   author: {
      type: String, 
      required: true 
-    },
+    }, 
   genres: {
      type: [String],
       required: true 

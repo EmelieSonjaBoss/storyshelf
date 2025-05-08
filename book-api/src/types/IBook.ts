@@ -1,4 +1,10 @@
 /**
+ * @module types/IBook
+ * @description TypeScript interface defining the shape of a Book object.
+ * Used for type-checking Book data in controllers and models.
+ */
+
+/**
  * Represents a book entry.
  */
 export interface IBook {
