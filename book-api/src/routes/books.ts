@@ -4,6 +4,7 @@
  */
 
 import express from "express";
+import { verifyToken } from "../middleware/authMiddleware";
 import { deleteBook, 
     fetchAllBooks, 
     fetchBook, 
@@ -14,8 +15,8 @@ const router = express.Router();
 
 router.get("/", fetchAllBooks);
 router.get("/:id", fetchBook);
-router.post("/", createBook);
-router.patch("/:id", updateBook);
-router.delete("/:id", deleteBook);
+router.post("/", verifyToken, createBook);
+router.patch("/:id", verifyToken, updateBook);
+router.delete("/:id", verifyToken, deleteBook);
 
 export default router;
