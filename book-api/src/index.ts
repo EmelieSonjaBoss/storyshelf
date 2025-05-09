@@ -19,8 +19,10 @@ app.use(
 // ROUTES
 import userRouter from "./routes/users";
 import authRouter from "./routes/auth";
+import bookRouter from "./routes/books";
 app.use("/users", userRouter);
 app.use("/auth", authRouter);
+app.use("/books", bookRouter);
 
 // CONNECT TO DATABASE
 
