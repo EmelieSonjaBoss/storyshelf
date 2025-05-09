@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import User from "../models/User";
+import bcrypt from "bcryptjs";
+import { verifyPassword } from "../services/authService";
 
 // REGISTER
 export const register = async (req: Request, res: Response) => {
@@ -22,7 +24,11 @@ export const register = async (req: Request, res: Response) => {
   }
 
   try {
-    const newUser = await User.create({ username, password, is_admin });
+
+    const salt = await bcrypt.genSalt(10); 
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const newUser = await User.create({ username, password: hashedPassword, is_admin });
     res.json(newUser);
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
@@ -31,12 +37,12 @@ export const register = async (req: Request, res: Response) => {
 };
 
 // LOGIN
-
-export const login = async (req: Request, res: Response) => {
+export const login = async (req: Request, res: Response): Promise<void> => {
   const { username, password } = req.body;
 
   if (username === undefined || password === undefined) {
-    res.status(401).json({ message: "Username and password is required" });
+    res.status(401).json({ message: "Username and password are required" });
+    return;
   }
 
   try {
@@ -47,24 +53,33 @@ export const login = async (req: Request, res: Response) => {
       throw new Error("Missing JWT_SECRET in .env file");
     }
 
-    if (!user || user.password !== password) {
+    if (!user) {
       res.status(401).json({ message: "Invalid username or password" });
-    } else {
-      const accessToken = jwt.sign({ username }, jwtSecret, { expiresIn: "15min" });
-
-      res.cookie("accessToken", accessToken, {
-        httpOnly: true,
-        secure: false,
-        sameSite: "none",
-        maxAge: 1000 * 60 * 15,
-      });
-      res.json({ message: "You are logged in" });
+      return;
     }
+
+    const isPasswordValid = await verifyPassword(password, user.password);
+
+    if (!isPasswordValid) {
+      res.status(401).json({ message: "Invalid username or password" });
+      return;
+    }
+
+    const accessToken = jwt.sign({ username }, jwtSecret, { expiresIn: "15min" });
+
+    res.cookie("accessToken", accessToken, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "none",
+      maxAge: 1000 * 60 * 15,
+    });
+    res.json({ message: "You are logged in" });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
     res.status(500).json({ error: message });
   }
 };
+
 
 // LOGOUT
 

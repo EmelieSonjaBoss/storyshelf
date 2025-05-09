@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import User from "../models/User";
+import bcrypt from "bcryptjs";
 
 // GET ALL USERS
 export const fetchAllUsers = async (req: Request, res: Response) => {
@@ -31,13 +32,19 @@ export const fetchUser = async (req: Request, res: Response) => {
 export const updateUser = async (req: Request, res: Response) => {
   const { username, password, is_admin } = req.body;
 
+  let hashedPassword = password;
+  if (password) {
+    const salt = await bcrypt.genSalt(10);
+    hashedPassword = await bcrypt.hash(password, salt);
+  }
+
   try {
     const updatedUser = await User.updateOne(
       { _id: req.params.id },
       {
         $set: {
           username: username,
-          password: password,
+          password: hashedPassword,
           is_admin: is_admin,
         },
       }
@@ -55,7 +62,6 @@ export const updateUser = async (req: Request, res: Response) => {
 };
 
 // DELETE USER BY ID
-
 export const deleteUser = async (req: Request, res: Response) => {
   try {
     const deletedUser = await User.deleteOne({ _id: req.params.id });
@@ -70,3 +76,4 @@ export const deleteUser = async (req: Request, res: Response) => {
     res.status(500).json({ error: message });
   }
 };
+
