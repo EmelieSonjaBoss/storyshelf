@@ -1,13 +1,14 @@
 /**
  * @module index
- * @description Entry point of the application. Configures and starts the Express server, connects to MongoDB, and sets up routes and middleware.
+ * @description Entry point of the application. Sets up middleware, routes, and database connection, 
+ * then starts the Express server.
  */
 
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
+import { connectToDatabase } from "./config/db";
 
 const app = express();
 
@@ -17,39 +18,41 @@ const app = express();
  * - Parses cookies from incoming requests
  * - Enables CORS for all origins with credentials
  */
-app.use(express.json());
-app.use(cookieParser());
+app.use(express.json());  // Parses incoming JSON payloads
+app.use(cookieParser());  // Parses cookies attached to incoming requests
 app.use(
   cors({
     origin: "*", // Adjust this in production to whitelist domains <--
-    credentials: true,
+    credentials: true,  // Allows cookies and other credentials to be sent with requests
   })
 );
 
-// Route imports
+// Routes imports
 import userRouter from "./routes/users";
 import authRouter from "./routes/auth";
 import bookRouter from "./routes/books";
 
 /**
  * Route definitions
- * - /users: User-related operations
- * - /auth: Authentication (register, login, logout)
- * - /books: CRUD operations for books
+ * - `/users`: User-related operations (fetch, create, update, delete)
+ * - `/auth`: Authentication operations (register, login, logout)
+ * - `/books`: CRUD operations for books (create, read, update, delete)
  */
 app.use("/users", userRouter);
 app.use("/auth", authRouter);
 app.use("/books", bookRouter);
 
 /**
- * Connects to MongoDB using the connection string from environment variables.
- * Logs an error if the connection fails.
+ * Connect to MongoDB database.
+ * - Retrieves the MongoDB URL from environment variables (`.env` file).
+ * - Establishes a connection using `connectToDatabase` utility.
  */
-mongoose.connect(process.env.MONGODB_URL || "");
-console.log("MongoDB URL:", process.env.MONGODB_URL);
+const mongoUrl = process.env.MONGODB_URL || "";
+connectToDatabase(mongoUrl);
 
 /**
- * Starts the Express server on the defined port.
+ * Start the Express server.
+ * - Listens on port 3000 for incoming HTTP requests.
  */
 const PORT = 3000;
 app.listen(PORT, () => {
