@@ -1,3 +1,8 @@
+/**
+ * @module routes/users
+ * @description Express router for user-related API endpoints.
+ */
+
 import express from "express";
 import { deleteUser, fetchAllUsers, fetchUser, updateUser } from "../controllers/userController";
 import { verifyToken } from "../middleware/authMiddleware";

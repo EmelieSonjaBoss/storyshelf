@@ -1,9 +1,16 @@
-import mongoose from "mongoose";
+/**
+ * @module models/User
+ * @description Mongoose model definition for the user collection.
+ */
+
+import mongoose, { Schema } from "mongoose";
 import { IUser } from "../types/IUser";
 
-const Schema = mongoose.Schema;
-
-const UserSchema = new Schema<IUser>({
+/**
+ * Mongoose schema for the User model.
+ * Defines the structure of documents within the "users" collection.
+ */
+const UserSchema: Schema = new Schema<IUser>({
   username: {
     type: String,
     required: true,
@@ -22,4 +29,4 @@ const UserSchema = new Schema<IUser>({
   },
 });
 
-export default mongoose.model("Users", UserSchema);
+export default mongoose.model("User", UserSchema);

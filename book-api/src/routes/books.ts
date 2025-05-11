@@ -5,11 +5,7 @@
 
 import express from "express";
 import { verifyToken } from "../middleware/authMiddleware";
-import { deleteBook, 
-    fetchAllBooks, 
-    fetchBook, 
-    updateBook,
-createBook } from "../controllers/bookController";
+import { deleteBook, fetchAllBooks, fetchBook, updateBook, createBook } from "../controllers/bookController";
 
 const router = express.Router();
 

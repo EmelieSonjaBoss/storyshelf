@@ -1,8 +1,20 @@
+/**
+ * @module controllers/userController
+ * @description Express controller for handling CRUD operations on users.
+ */
+
 import { Request, Response } from "express";
 import User from "../models/User";
 import bcrypt from "bcryptjs";
 
-// GET ALL USERS
+/**
+ * Fetches all users from the database.
+ * 
+ * @route GET /api/users
+ * @param {Request} req - Express request object
+ * @param {Response} res - Express response object
+ * @returns {Promise<void>}
+ */
 export const fetchAllUsers = async (req: Request, res: Response) => {
   try {
     res.json(await User.find());
@@ -12,7 +24,14 @@ export const fetchAllUsers = async (req: Request, res: Response) => {
   }
 };
 
-// GET USER BY ID
+/**
+ * Fetches a single user by ID.
+ * 
+ * @route GET /api/users/:id
+ * @param {Request} req - Express request object containing the user ID in params
+ * @param {Response} res - Express response object
+ * @returns {Promise<void>}
+ */
 export const fetchUser = async (req: Request, res: Response) => {
   try {
     const user = await User.findById(req.params.id);
@@ -28,7 +47,15 @@ export const fetchUser = async (req: Request, res: Response) => {
   }
 };
 
-// UPDATE USER BY ID
+/**
+ * Updates a user by ID.
+ * If a new password is provided, it will be hashed before saving.
+ * 
+ * @route PATCH /api/users/:id
+ * @param {Request} req - Express request object containing updated user data in body and ID in params
+ * @param {Response} res - Express response object
+ * @returns {Promise<void>}
+ */
 export const updateUser = async (req: Request, res: Response) => {
   const { username, password, is_admin } = req.body;
 
@@ -61,7 +88,14 @@ export const updateUser = async (req: Request, res: Response) => {
   }
 };
 
-// DELETE USER BY ID
+/**
+ * Deletes a user by ID.
+ * 
+ * @route DELETE /api/users/:id
+ * @param {Request} req - Express request object containing the user ID in params
+ * @param {Response} res - Express response object
+ * @returns {Promise<void>}
+ */
 export const deleteUser = async (req: Request, res: Response) => {
   try {
     const deletedUser = await User.deleteOne({ _id: req.params.id });
@@ -76,4 +110,3 @@ export const deleteUser = async (req: Request, res: Response) => {
     res.status(500).json({ error: message });
   }
 };
-

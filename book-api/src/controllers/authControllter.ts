@@ -1,10 +1,22 @@
+/**
+ * @module controllers/authController
+ * @description Express controller for handling user authentication (register, login, logout).
+ */
+
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import User from "../models/User";
 import bcrypt from "bcryptjs";
 import { verifyPassword } from "../services/authService";
 
-// REGISTER
+/**
+ * Registers a new user.
+ * 
+ * @route POST /api/auth/register
+ * @param {Request} req - Express request object containing username, password, and is_admin in body
+ * @param {Response} res - Express response object
+ * @returns {Promise<void>}
+ */
 export const register = async (req: Request, res: Response) => {
   const { username, password, is_admin } = req.body;
 
@@ -24,7 +36,6 @@ export const register = async (req: Request, res: Response) => {
   }
 
   try {
-
     const salt = await bcrypt.genSalt(10); 
     const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -36,7 +47,14 @@ export const register = async (req: Request, res: Response) => {
   }
 };
 
-// LOGIN
+/**
+ * Logs in a user and sets a JWT as an HTTP-only cookie.
+ * 
+ * @route POST /api/auth/login
+ * @param {Request} req - Express request object containing username and password in body
+ * @param {Response} res - Express response object
+ * @returns {Promise<void>}
+ */
 export const login = async (req: Request, res: Response): Promise<void> => {
   const { username, password } = req.body;
 
@@ -69,7 +87,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
-      secure: false,
+      secure: false, // Consider setting to true in production with HTTPS
       sameSite: "none",
       maxAge: 1000 * 60 * 15,
     });
@@ -80,10 +98,15 @@ export const login = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-
-// LOGOUT
-
+/**
+ * Logs out the user by clearing the access token cookie.
+ * 
+ * @route POST /api/auth/logout
+ * @param {Request} req - Express request object
+ * @param {Response} res - Express response object
+ * @returns {void}
+ */
 export const logout = async (req: Request, res: Response) => {
   res.clearCookie("accessToken");
-  res.json({ message: "You are loged out and token has been cleared" });
+  res.json({ message: "You are logged out and token has been cleared" });
 };
