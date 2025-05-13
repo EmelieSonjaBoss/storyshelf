@@ -80,6 +80,13 @@ const filteredBooks = computed(() => {
   align-items: center;
   gap: 0.75rem;
   font-size: 1rem;
+  border-radius: 8px;
+  height: 1.5rem;
+}
+
+select {
+  border-radius: 8px;
+  height: 1.5rem;
 }
 
 .book-grid {
@@ -92,11 +99,11 @@ const filteredBooks = computed(() => {
 .book-card {
   display: flex;
   flex-direction: row;
-  background: #f9f9f9;
+  background-color: #e1e6e9;
   border-radius: 8px;
   padding: 1rem;
   width: calc(25% - 1.125rem);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
   overflow: hidden;
 }
