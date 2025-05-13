@@ -4,10 +4,12 @@ import { useRoute, useRouter } from "vue-router";
 import api from "../models/api";
 import type { IBook } from '../types/IBook';
 
+// The fetched book
 const book = ref<IBook | null>(null);
 const route = useRoute();
 const router = useRouter();
 
+// Fetch books when the component is mounted
 onMounted(async () => {
   const response = await api.get(`/books/${route.params.id}`);
   book.value = response.data;
@@ -60,7 +62,7 @@ const goBack = () => {
 }
 
 .book-cover-container {
-  width: 250px; /* Larger book image */
+  width: 250px;
   height: auto;
   display: flex;
   justify-content: center;
@@ -69,7 +71,7 @@ const goBack = () => {
 
 .book-cover {
   max-width: 100%;
-  max-height: 400px; /* Increase max height for larger image */
+  max-height: 400px;
   object-fit: contain;
   border-radius: 8px;
 }
