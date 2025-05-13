@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
-import api from '../models/api';
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
+import api from "../models/api";
 
 const book = ref(null);
 const route = useRoute();
@@ -20,5 +20,4 @@ onMounted(async () => {
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

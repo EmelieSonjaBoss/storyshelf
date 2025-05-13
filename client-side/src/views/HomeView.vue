@@ -1,26 +1,27 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
-import api from '../models/api';
+import { ref, computed, onMounted } from "vue";
+import api from "../models/api";
+import type { IBook } from '../types/IBook';
 
-const books = ref([]);
-const selectedGenre = ref('All');
+const books = ref<IBook[]>([]);
+const selectedGenre = ref("All");
 
 onMounted(async () => {
-  const response = await api.get('/books');
+  const response = await api.get("/books");
   books.value = response.data;
 });
 
 const allGenres = computed(() => {
   const genreSet = new Set();
-  books.value.forEach(book => {
-    book.genres.forEach(genre => genreSet.add(genre));
+  books.value.forEach((book) => {
+    book.genres.forEach((genre) => genreSet.add(genre));
   });
-  return ['All', ...Array.from(genreSet).sort()];
+  return ["All", ...Array.from(genreSet).sort()];
 });
 
 const filteredBooks = computed(() => {
-  if (selectedGenre.value === 'All') return books.value;
-  return books.value.filter(book => book.genres.includes(selectedGenre.value));
+  if (selectedGenre.value === "All") return books.value;
+  return books.value.filter((book) => book.genres.includes(selectedGenre.value));
 });
 </script>
 
@@ -44,16 +45,18 @@ const filteredBooks = computed(() => {
         <router-link :to="`/books/${book._id}`">
           <img :src="book.image" :alt="book.title" class="book-cover" />
         </router-link>
-        <h2>{{ book.title }}</h2>
-        <p><strong>Author:</strong> {{ book.author }}</p>
-        <p><strong>Published:</strong> {{ book.published_year }}</p>
-        <p class="genres">
-          <strong>Genres:</strong>
-          <span v-for="(genre, index) in book.genres" :key="index">
-            {{ genre }}<span v-if="index < book.genres.length - 1">, </span>
-          </span>
-        </p>
-        <router-link :to="`/books/${book._id}`" class="details-link">View Details</router-link>
+        <div class="book-info">
+          <h2>{{ book.title }}</h2>
+          <p><strong>Author:</strong> {{ book.author }}</p>
+          <p><strong>Published:</strong> {{ book.published_year }}</p>
+          <p class="genres">
+            <strong>Genres: </strong>
+            <span v-for="(genre, index) in book.genres" :key="index">
+              {{ genre }}<span v-if="index < book.genres.length - 1">, </span>
+            </span>
+          </p>
+          <router-link :to="`/books/${book._id}`" class="details-link">View Details</router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -80,31 +83,52 @@ const filteredBooks = computed(() => {
 }
 
 .book-card {
+  display: flex;
+  flex-direction: row;
   background: #f9f9f9;
   border-radius: 8px;
   padding: 1rem;
-  width: calc(25% - 1.125rem); /* Default: 4 per row */
+  width: calc(25% - 1.125rem);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
 }
 
-/* ✅ Responsive layout */
+.book-cover {
+  width: 100px;
+  height: auto;
+  margin: 0.5rem;
+}
+
+.book-info {
+  flex-grow: 1;
+  margin-top: -1.5rem;
+  margin-left: 1.5rem;
+}
+
+.book-info h3 {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+}
+
+.book-info p {
+  margin: 0.3rem 0;
+}
+
 @media (max-width: 1024px) {
   .book-card {
-    width: calc(50% - 0.75rem); /* 2 per row on tablets */
+    width: calc(50% - 0.75rem);
   }
 }
 
 @media (max-width: 600px) {
   .book-card {
-    width: 100%; /* 1 per row on phones */
+    width: 100%;
+  }
+
+  .book-cover {
+    width: 80px;
   }
 }
-
 
 .book-cover {
   width: 100%;
