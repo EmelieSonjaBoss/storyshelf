@@ -27,7 +27,7 @@ const filteredBooks = computed(() => {
 
 <template>
   <div class="home-container">
-    <h1>All Books</h1>
+
 
     <!-- Genre Filter -->
     <div class="filter-bar">
@@ -67,6 +67,7 @@ const filteredBooks = computed(() => {
   padding: 2rem;
 }
 
+
 .filter-bar {
   margin-bottom: 1.5rem;
   display: flex;
@@ -91,17 +92,16 @@ const filteredBooks = computed(() => {
   width: calc(25% - 1.125rem);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .book-cover {
   width: 100px;
   height: auto;
-  margin: 0.5rem;
 }
 
 .book-info {
   flex-grow: 1;
-  margin-top: -1.5rem;
   margin-left: 1.5rem;
 }
 
@@ -112,6 +112,7 @@ const filteredBooks = computed(() => {
 
 .book-info p {
   margin: 0.3rem 0;
+  font-size: 1rem;
 }
 
 @media (max-width: 1024px) {
@@ -123,6 +124,15 @@ const filteredBooks = computed(() => {
 @media (max-width: 600px) {
   .book-card {
     width: 100%;
+  }
+
+  .book-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .book-card h3,
+  .book-card p {
+    font-size: 1rem;
   }
 
   .book-cover {
@@ -145,7 +155,6 @@ const filteredBooks = computed(() => {
 }
 
 .details-link {
-  margin-top: 0.5rem;
   display: inline-block;
   color: #2c3e50;
   text-decoration: underline;
