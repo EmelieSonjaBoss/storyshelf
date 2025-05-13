@@ -3,8 +3,11 @@ import { ref, onMounted } from "vue";
 import api from "@/models/api";
 import type { IBook } from "@/types/IBook";
 
+// An array to hold the list of books
 const books = ref<IBook[]>([]);
 
+
+// Function to fetch books from the API when the component loads
 const fetchBooks = async () => {
   try {
     const response = await api.get("/books");
@@ -14,6 +17,7 @@ const fetchBooks = async () => {
   }
 };
 
+// Function to delete a specific book by its ID
 const deleteBook = async (id: string) => {
   try {
     await api.delete(`/books/${id}`);
@@ -23,6 +27,8 @@ const deleteBook = async (id: string) => {
   }
 };
 
+
+// Fetch books as soon as the component is mounted
 onMounted(fetchBooks);
 </script>
 
