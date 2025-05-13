@@ -3,14 +3,19 @@ import { ref, computed, onMounted } from "vue";
 import api from "../models/api";
 import type { IBook } from '../types/IBook';
 
+// All fetched books from the API
 const books = ref<IBook[]>([]);
+
+// Currently selected genre for filtering
 const selectedGenre = ref("All");
 
+// Fetch books when the component is mounted
 onMounted(async () => {
   const response = await api.get("/books");
   books.value = response.data;
 });
 
+// Conpute a sorted list of all genres
 const allGenres = computed(() => {
   const genreSet = new Set();
   books.value.forEach((book) => {
@@ -19,6 +24,7 @@ const allGenres = computed(() => {
   return ["All", ...Array.from(genreSet).sort()];
 });
 
+// Filter the books based on selected genre
 const filteredBooks = computed(() => {
   if (selectedGenre.value === "All") return books.value;
   return books.value.filter((book) => book.genres.includes(selectedGenre.value));
