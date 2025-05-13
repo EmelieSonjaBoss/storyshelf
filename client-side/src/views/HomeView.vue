@@ -3,14 +3,19 @@ import { ref, computed, onMounted } from "vue";
 import api from "../models/api";
 import type { IBook } from '../types/IBook';
 
+// All fetched books from the API
 const books = ref<IBook[]>([]);
+
+// Currently selected genre for filtering
 const selectedGenre = ref("All");
 
+// Fetch books when the component is mounted
 onMounted(async () => {
   const response = await api.get("/books");
   books.value = response.data;
 });
 
+// Conpute a sorted list of all genres
 const allGenres = computed(() => {
   const genreSet = new Set();
   books.value.forEach((book) => {
@@ -19,6 +24,7 @@ const allGenres = computed(() => {
   return ["All", ...Array.from(genreSet).sort()];
 });
 
+// Filter the books based on selected genre
 const filteredBooks = computed(() => {
   if (selectedGenre.value === "All") return books.value;
   return books.value.filter((book) => book.genres.includes(selectedGenre.value));
@@ -27,7 +33,7 @@ const filteredBooks = computed(() => {
 
 <template>
   <div class="home-container">
-    <h1>All Books</h1>
+
 
     <!-- Genre Filter -->
     <div class="filter-bar">
@@ -67,12 +73,20 @@ const filteredBooks = computed(() => {
   padding: 2rem;
 }
 
+
 .filter-bar {
   margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
   font-size: 1rem;
+  border-radius: 8px;
+  height: 1.5rem;
+}
+
+select {
+  border-radius: 8px;
+  height: 1.5rem;
 }
 
 .book-grid {
@@ -85,23 +99,22 @@ const filteredBooks = computed(() => {
 .book-card {
   display: flex;
   flex-direction: row;
-  background: #f9f9f9;
+  background-color: #e1e6e9;
   border-radius: 8px;
   padding: 1rem;
   width: calc(25% - 1.125rem);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .book-cover {
   width: 100px;
   height: auto;
-  margin: 0.5rem;
 }
 
 .book-info {
   flex-grow: 1;
-  margin-top: -1.5rem;
   margin-left: 1.5rem;
 }
 
@@ -112,6 +125,7 @@ const filteredBooks = computed(() => {
 
 .book-info p {
   margin: 0.3rem 0;
+  font-size: 1rem;
 }
 
 @media (max-width: 1024px) {
@@ -123,6 +137,15 @@ const filteredBooks = computed(() => {
 @media (max-width: 600px) {
   .book-card {
     width: 100%;
+  }
+
+  .book-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .book-card h3,
+  .book-card p {
+    font-size: 1rem;
   }
 
   .book-cover {
@@ -145,7 +168,6 @@ const filteredBooks = computed(() => {
 }
 
 .details-link {
-  margin-top: 0.5rem;
   display: inline-block;
   color: #2c3e50;
   text-decoration: underline;
