@@ -1,15 +1,25 @@
 <script setup lang="ts">
-import { defineProps, defineEmits } from "vue";
-import type { IBook } from "@/types/IBook";
+import { useBookStore } from "@/stores/bookStore";
+import { onMounted } from "vue";
 
-const props = defineProps<{
-  books: IBook[];
-}>();
+const bookStore = useBookStore();
+
 
 const emit = defineEmits<{
   (e: "delete", id: string): void;
   (e: "edit", id: string): void;
 }>();
+
+onMounted(() => {
+  bookStore.fetchBooks();
+});
+
+const deleteBook = async (id: string) => {
+    await bookStore.deleteBook(id);
+
+};
+
+
 </script>
 
 <template>
@@ -25,14 +35,14 @@ const emit = defineEmits<{
       </tr>
     </thead>
     <tbody>
-      <tr v-for="book in props.books" :key="book._id">
+      <tr v-for="book in bookStore.books" :key="book._id">
         <td class="row">{{ book.title }}</td>
         <td class="row">{{ book.description }}</td>
         <td class="row">{{ book.author }}</td>
         <td class="row">{{ book.genres.join(', ') }}</td>
         <td class="row">{{ book.published_year }}</td>
         <td class="row">
-          <button class="action-btn delete-btn" @click="emit('delete', book._id)">Delete</button>
+          <button class="action-btn delete-btn" @click="deleteBook(book._id)">Delete</button>
           <button class="action-btn edit-btn">Edit</button>
         </td>
       </tr>
