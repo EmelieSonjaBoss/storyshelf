@@ -87,11 +87,14 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
-      secure: false, // Consider setting to true in production with HTTPS
+      secure: true, // Consider setting to true in production with HTTPS
       sameSite: "none",
       maxAge: 1000 * 60 * 15,
     });
-    res.json({ message: "You are logged in" });
+    res.json({
+      message: "You are logged in",
+      is_admin: user.is_admin,
+    });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
     res.status(500).json({ error: message });

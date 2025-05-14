@@ -1,6 +1,6 @@
 /**
  * @module index
- * @description Entry point of the application. Sets up middleware, routes, and database connection, 
+ * @description Entry point of the application. Sets up middleware, routes, and database connection,
  * then starts the Express server.
  */
 
@@ -18,12 +18,12 @@ const app = express();
  * - Parses cookies from incoming requests
  * - Enables CORS for all origins with credentials
  */
-app.use(express.json());  // Parses incoming JSON payloads
-app.use(cookieParser());  // Parses cookies attached to incoming requests
+app.use(express.json()); // Parses incoming JSON payloads
+app.use(cookieParser()); // Parses cookies attached to incoming requests
 app.use(
   cors({
-    origin: "*", // Adjust this in production to whitelist domains <--
-    credentials: true,  // Allows cookies and other credentials to be sent with requests
+    origin: "http://localhost:5173", // Adjust this in production to whitelist domains <--
+    credentials: true, // Allows cookies and other credentials to be sent with requests
   })
 );
 
