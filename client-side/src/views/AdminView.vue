@@ -2,8 +2,9 @@
 import { ref, onMounted, computed } from "vue";
 import api from "@/models/api";
 import type { IUser } from "@/types/IUser";
+// add ibook too??
 
-import MainTable from "@/components/UserTable.vue";
+import UserTable from "@/components/UserTable.vue";
 import BookTable from "@/components/BookTable.vue";
 import AddBookForm from "@/components/AddBookForm.vue";
 import AdminNav from "@/components/AdminNav.vue";
@@ -40,7 +41,7 @@ const formattedUsers = computed(() => {
   <AdminNav @navigate="(section) => (currentSection = section)" />
 
   <div v-if="currentSection === 'users'">
-    <MainTable :columns="columns" :data="formattedUsers" />
+    <UserTable :columns="columns" :data="formattedUsers" />
   </div>
 
   <div v-else-if="currentSection === 'books'">

@@ -42,7 +42,7 @@ const { columns, data } = defineProps({
 
 .main-table th,
 .main-table td {
-  padding: 0.2rem;
+  padding: 0.5rem;
   text-align: left;
 }
 
