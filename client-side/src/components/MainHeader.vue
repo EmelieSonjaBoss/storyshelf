@@ -1,23 +1,55 @@
 <script setup lang="ts">
-import { RouterLink } from "vue-router";
+import useAuthStore from "@/stores/useAuthStore";
+import { RouterLink, useRouter } from "vue-router";
+
+const auth = useAuthStore();
+const router = useRouter();
+
+const handleLoginLogout = () => {
+  if (auth.isAuthenticated) {
+    auth.logout();
+    router.push("/");
+  } else {
+    router.push("/auth");
+  }
+};
+console.log(auth.isAuthenticated);
 </script>
 
 <template>
   <header class="header">
-    <div class="img-container">
-      <img
-        class="header-img"
-        src="@/assets/images/book-header.png"
-        alt="Open book"
-        height="60px"
-        width="60px"
-      />
+    <div class="img-wrapper">
+      <img class="header-img" src="@/assets/images/book-header.png" alt="Open book" />
     </div>
-    <h1>Storyshelf</h1>
-   <router-link to="/auth" class="login-icon-container">
-      <img src="@/assets/icons/icon-user.svg" />
-      <span class="login-text">Login</span>
-   </router-link>
+
+    <div class="title-wrapper">
+      <RouterLink to="/" class="h1-link">
+        <h1>Storyshelf</h1>
+      </RouterLink>
+    </div>
+
+    <div class="icon-wrapper">
+      <RouterLink
+        v-if="auth.isAuthenticated && auth.user?.is_admin"
+        to="/admin"
+        class="icon-container"
+        :aria-label="'Admin panel'"
+      >
+        <img src="@/assets/icons/icon-admin.svg" alt="" />
+        <span class="login-text">Admin</span>
+      </RouterLink>
+
+      <button
+        class="icon-container"
+        @click="handleLoginLogout"
+        :aria-label="auth.isAuthenticated ? 'Logout' : 'Login'"
+      >
+        <img src="@/assets/icons/icon-user.svg" alt="" />
+        <span class="login-text">
+          {{ auth.isAuthenticated ? "Logout" : "Login" }}
+        </span>
+      </button>
+    </div>
   </header>
 </template>
 
@@ -27,44 +59,80 @@ import { RouterLink } from "vue-router";
   display: flex;
   align-items: center;
   height: 6.25rem;
-  padding: 1.25rem;
   width: 100vw;
 }
 
-.img-container,
-.login-icon-container {
-  flex: 0 0 auto;
-}
-
-.login-icon {
-  height: 30px;
-  width: 30px;
-}
-
-img {
-  max-height: 60px;
+.header-img {
+  height: 100%;
   width: auto;
+  object-fit: contain;
 }
 
-h1 {
-  margin: 0;
-  text-transform: uppercase;
-  text-align: center;
+.img-wrapper,
+.title-wrapper,
+.icon-wrapper {
   flex: 1;
-}
-
-.login-icon-container {
-  flex: 0 0 auto;
   display: flex;
   align-items: center;
-  flex-direction: column;
-  gap: 6px;
-  cursor: pointer;
+  justify-content: center;
+  height: 100%;
+}
+
+.img-wrapper,
+.icon-wrapper {
+  border: solid red;
+}
+
+.icon-wrapper {
+  gap: 1rem;
+}
+
+.h1-link {
+  text-transform: uppercase;
   text-decoration: none;
+  color: inherit;
+}
+
+.icon-container {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+}
+
+.icon-container img {
+  height: 20px;
+  width: 20px;
 }
 
 .login-text {
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: #333;
+  font-family: "Geist", sans-serif;
+}
+
+@media only screen and (min-width: 620px) {
+  .login-text {
+    font-size: 1rem;
+  }
+
+  .header-img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .icon-container img {
+    height: 30px;
+    width: 30px;
+  }
+
+  .img-wrapper,
+  .icon-wrapper {
+    min-width: 120px;
+    border: solid red;
+  }
 }
 </style>
