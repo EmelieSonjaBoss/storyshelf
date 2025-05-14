@@ -3,7 +3,7 @@ import { ref, onMounted, computed } from "vue";
 import api from "@/models/api";
 import type { IUser } from "@/types/IUser";
 
-import MainTable from "@/components/MainTable.vue";
+import MainTable from "@/components/UserTable.vue";
 import BookTable from "@/components/BookTable.vue";
 import AddBookForm from "@/components/AddBookForm.vue";
 import AdminNav from "@/components/AdminNav.vue";
