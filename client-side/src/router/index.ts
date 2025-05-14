@@ -40,7 +40,7 @@ const useAuth = useAuthStore(pinia);
 
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !useAuth.isAuthenticated) {
-    next("/login");
+    next("/auth");
   } else {
     next();
   }
