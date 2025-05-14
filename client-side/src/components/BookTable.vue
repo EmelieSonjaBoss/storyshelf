@@ -1,29 +1,15 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import api from "@/models/api";
+import { defineProps, defineEmits } from "vue";
 import type { IBook } from "@/types/IBook";
 
-const books = ref<IBook[]>([]);
+const props = defineProps<{
+  books: IBook[];
+}>();
 
-const fetchBooks = async () => {
-  try {
-    const response = await api.get("/books");
-    books.value = response.data;
-  } catch (error) {
-    console.error("Error fetching books:", error);
-  }
-};
-
-const deleteBook = async (id: string) => {
-  try {
-    await api.delete(`/books/${id}`);
-    books.value = books.value.filter((book) => book._id !== id);
-  } catch (error) {
-    console.error("Error deleting book:", error);
-  }
-};
-
-onMounted(fetchBooks);
+const emit = defineEmits<{
+  (e: "delete", id: string): void;
+  (e: "edit", id: string): void;
+}>();
 </script>
 
 <template>
@@ -39,14 +25,14 @@ onMounted(fetchBooks);
       </tr>
     </thead>
     <tbody>
-      <tr v-for="book in books" :key="book._id">
+      <tr v-for="book in props.books" :key="book._id">
         <td class="row">{{ book.title }}</td>
         <td class="row">{{ book.description }}</td>
         <td class="row">{{ book.author }}</td>
         <td class="row">{{ book.genres.join(', ') }}</td>
         <td class="row">{{ book.published_year }}</td>
         <td class="row">
-          <button class="action-btn delete-btn" @click="deleteBook(book._id)">Delete</button>
+          <button class="action-btn delete-btn" @click="emit('delete', book._id)">Delete</button>
           <button class="action-btn edit-btn">Edit</button>
         </td>
       </tr>

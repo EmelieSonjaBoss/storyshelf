@@ -48,7 +48,7 @@ const resetForm = () => {
 <template>
   <div class="form-container">
     <h2 class="form-h2">Add New Book</h2>
-    
+
      <!-- Prevent default submit/reset behavior and call handlers instead -->
     <form class="form" @submit.prevent="submitForm" @reset.prevent="resetForm">
       <label>
@@ -57,7 +57,7 @@ const resetForm = () => {
       </label>
       <label>
         Description:
-        <input type="text" v-model="description" required />
+        <input type="text" v-model="description"  required />
       </label>
       <label>
         Author:
