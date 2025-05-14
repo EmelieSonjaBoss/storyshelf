@@ -7,6 +7,7 @@ import MainTable from "@/components/MainTable.vue";
 import BookTable from "@/components/BookTable.vue";
 import AddBookForm from "@/components/AddBookForm.vue";
 import AdminNav from "@/components/AdminNav.vue";
+import BackButton from "@/components/BackButton.vue";
 
 const currentSection = ref<"users" | "books" | "add">("users");
 
@@ -33,6 +34,9 @@ const formattedUsers = computed(() => {
 </script>
 
 <template>
+
+  <BackButton to="/" />
+
   <AdminNav @navigate="(section) => (currentSection = section)" />
 
   <div v-if="currentSection === 'users'">
