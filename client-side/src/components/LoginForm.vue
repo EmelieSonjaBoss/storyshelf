@@ -1,26 +1,50 @@
-<!-- src/components/LoginForm.vue -->
 <script setup lang="ts">
-const emit = defineEmits<{
-  (e: 'switch-to-register'): void
-}>()
+import { ref } from "vue";
+import useAuthStore from "@/stores/useAuthStore";
+import type { ILoginCredentials } from "@/types/ICredentials";
+import { useRouter } from "vue-router";
 
-function handleSwitchToRegister() {
-  emit('switch-to-register')
-}
+const emit = defineEmits(["switch-to-register"]);
+const username = ref("");
+const password = ref("");
+const errorMessage = ref("");
+
+const useAuth = useAuthStore();
+const router = useRouter();
+
+const loginHandler = async () => {
+  errorMessage.value = "";
+  const credentials: ILoginCredentials = {
+    username: username.value,
+    password: password.value,
+  };
+  try {
+    await useAuth.login(credentials);
+    if (useAuth.user) {
+      router.push(useAuth.user.is_admin ? "/admin" : "/");
+    } else {
+      errorMessage.value = "Something went wrong, please try again.";
+    }
+  } catch (error: any) {
+    errorMessage.value = error.message || "Login failed";
+  }
+};
 </script>
 
 <template>
   <section class="form-container">
     <h2 class="form-h2">Login</h2>
-    <form class="form">
+    <form class="form" @submit.prevent="loginHandler">
+      <span class="error" v-if="errorMessage">{{ errorMessage }}</span>
+
       <label for="login-username">
         Username:
-        <input type="text" id="login-username" name="username" />
+        <input type="text" id="login-username" v-model="username" />
       </label>
 
       <label for="login-password">
         Password:
-        <input type="password" id="login-password" name="password" />
+        <input type="password" id="login-password" v-model="password" />
       </label>
 
       <div class="form-actions">
@@ -31,7 +55,7 @@ function handleSwitchToRegister() {
 
     <p class="form-footer">
       Don't have an account?
-      <a href="#" @click.prevent="handleSwitchToRegister">Register here</a>
+      <a href="#" @click.prevent="emit('switch-to-register')">Register here</a>
     </p>
   </section>
 </template>
@@ -45,5 +69,11 @@ function handleSwitchToRegister() {
   margin-top: 2rem;
   text-align: center;
   font-size: 0.9rem;
+}
+
+.error {
+  color: red;
+  display: block;
+  margin-bottom: 1rem;
 }
 </style>
