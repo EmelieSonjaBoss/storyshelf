@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import LoginForm from '@/components/LoginForm.vue'
 import RegisterForm from '@/components/RegisterForm.vue'
+import BackButton from '@/components/BackButton.vue'
 
 const showLogin = ref(true)
 
@@ -15,6 +16,7 @@ function switchToLogin() {
 </script>
 
 <template>
+  <BackButton to="/" />
   <div>
     <LoginForm v-if="showLogin" @switch-to-register="switchToRegister" />
     <RegisterForm v-else @switch-to-login="switchToLogin" />
