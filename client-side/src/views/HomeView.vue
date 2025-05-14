@@ -16,13 +16,14 @@ onMounted(async () => {
 });
 
 // Conpute a sorted list of all genres
-const allGenres = computed(() => {
-  const genreSet = new Set();
+const allGenres = computed<string[]>(() => {
+  const genreSet = new Set<string>();
   books.value.forEach((book) => {
     book.genres.forEach((genre) => genreSet.add(genre));
   });
   return ["All", ...Array.from(genreSet).sort()];
 });
+
 
 // Filter the books based on selected genre
 const filteredBooks = computed(() => {
