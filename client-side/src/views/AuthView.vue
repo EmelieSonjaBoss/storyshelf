@@ -1,20 +1,26 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import LoginForm from "@/components/LoginForm.vue";
-import RegisterForm from "@/components/RegisterForm.vue";
+import { ref } from 'vue'
+import LoginForm from '@/components/LoginForm.vue'
+import RegisterForm from '@/components/RegisterForm.vue'
 
-const showLogin = ref(true);
+const showLogin = ref(true)
+
+function switchToRegister() {
+  showLogin.value = false
+}
+
+function switchToLogin() {
+  showLogin.value = true
+}
 </script>
 
 <template>
-  <div class="form-toggle">
-    <button @click="showLogin = true">Login</button>
-    <button @click="showLogin = false">Register</button>
+  <div>
+    <LoginForm v-if="showLogin" @switch-to-register="switchToRegister" />
+    <RegisterForm v-else @switch-to-login="switchToLogin" />
   </div>
-
-  <LoginForm v-if="showLogin" />
-  <RegisterForm v-else />
 </template>
+
 
 <style scoped>
 .auth-wrapper {
