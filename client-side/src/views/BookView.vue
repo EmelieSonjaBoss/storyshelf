@@ -97,22 +97,6 @@ const goBack = () => {
 }
 
 
-.back-button {
-  font-size: 1rem;
-  border-radius: 8px;
-  height: 1.5rem;
-  padding-left: 0.7rem;
-  padding-right: 0.7rem;
-  border: none;
-  cursor: pointer;
-  margin-top: 1.5rem;
-  margin-left: 1.5rem;
-}
-
-.back-button:hover {
-  background-color: #bdbdbd;
-}
-
 @media (max-width: 1024px) {
    .book-view-container {
   padding: 5rem;

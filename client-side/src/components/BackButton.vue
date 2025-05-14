@@ -29,6 +29,8 @@ function goBack(to?: string) {
   font-family: "Geist", sans-serif;
   font-weight: 400;
   font-size: 1rem;
+  border: 0;
+  padding: 0.5rem;
   border-radius: 8px;
   cursor: pointer;
   margin-top: 1.5rem;
