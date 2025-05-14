@@ -1,17 +1,18 @@
+<!-- src/components/RegisterForm.vue -->
 <script setup lang="ts"></script>
 
 <template>
   <section class="form-container">
     <h2 class="form-h2">Register</h2>
     <form class="form">
-      <label for="username">
+      <label for="register-username">
         Username:
-        <input type="text" id="username" name="username" />
+        <input type="text" id="register-username" name="username" />
       </label>
 
-      <label for="password">
+      <label for="register-password">
         Password:
-        <input type="password" id="password" name="password" />
+        <input type="password" id="register-password" name="password" />
       </label>
 
       <div class="form-actions">

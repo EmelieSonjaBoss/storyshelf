@@ -14,10 +14,10 @@ import { RouterLink } from "vue-router";
       />
     </div>
     <h1>Storyshelf</h1>
-    <router-link to="/login" class="login-icon-container">
+   <router-link to="/auth" class="login-icon-container">
       <img src="@/assets/icons/icon-user.svg" />
       <span class="login-text">Login</span>
-    </router-link>
+   </router-link>
   </header>
 </template>
 
