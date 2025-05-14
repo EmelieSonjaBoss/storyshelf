@@ -92,8 +92,8 @@ const resetForm = () => {
             {{ successMessage }}
           </div>
         </transition>
-        <input type="submit" value="Add Book" />
         <input type="reset" value="Reset" />
+        <input type="submit" value="Add Book" />
       </div>
     </form>
   </div>

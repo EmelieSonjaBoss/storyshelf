@@ -1,14 +1,26 @@
 <script setup lang="ts">
 import { useBookStore } from "@/stores/bookStore";
 import { onMounted } from "vue";
+import { ref } from "vue";
+import EditBookForm from "@/components/EditBookForm.vue";
+import type { IBook } from "@/types/IBook";
+import { nextTick } from "vue";
+
 
 const bookStore = useBookStore();
+const selectedBook = ref<IBook | null>(null);
+const editFormRef = ref<HTMLElement | null>(null);
 
+const editBook = (book: IBook) => {
+  selectedBook.value = book;
+  nextTick(() => {
+    editFormRef.value?.scrollIntoView({ behavior: "smooth" });
+  });
+};
 
-const emit = defineEmits<{
-  (e: "delete", id: string): void;
-  (e: "edit", id: string): void;
-}>();
+const closeEditForm = () => {
+  selectedBook.value = null;
+};
 
 onMounted(() => {
   bookStore.fetchBooks();
@@ -16,12 +28,9 @@ onMounted(() => {
 
 const deleteBook = async (id: string) => {
     await bookStore.deleteBook(id);
-
 };
 
-
 </script>
-
 <template>
   <table class="main-table">
     <thead>
@@ -43,11 +52,14 @@ const deleteBook = async (id: string) => {
         <td class="row">{{ book.published_year }}</td>
         <td class="row">
           <button class="action-btn delete-btn" @click="deleteBook(book._id)">Delete</button>
-          <button class="action-btn edit-btn">Edit</button>
+          <button class="action-btn edit-btn" @click="editBook(book)">Edit</button>
         </td>
       </tr>
     </tbody>
   </table>
+  <div ref="editFormRef">
+   <EditBookForm v-if="selectedBook" :book="selectedBook" @close="closeEditForm" />
+   </div>
 </template>
 
 <style scoped>
