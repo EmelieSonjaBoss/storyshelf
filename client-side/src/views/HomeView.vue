@@ -80,6 +80,8 @@ const filteredBooks = computed(() => {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  font-family: "Geist", sans-serif;
+  font-weight: 400;
   font-size: 1rem;
   border-radius: 8px;
   height: 1.5rem;
