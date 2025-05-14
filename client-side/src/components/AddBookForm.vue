@@ -25,8 +25,8 @@ const submitForm = async () => {
 
   try {
     // Send POST request to create a new book
-    await api.post("/books", newBook);
-    alert("Book successfully added!");
+    await api.post("/books", newBook, { withCredentials: true });
+    alert("Book successfully added!"); // REMOVE THIS shit, make it right
     resetForm();
   } catch (error) {
     console.error("Failed to add book:", error);
