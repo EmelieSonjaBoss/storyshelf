@@ -3,6 +3,7 @@ import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import api from "../models/api";
 import type { IBook } from '../types/IBook';
+import BackButton from "@/components/BackButton.vue";
 
 // The fetched book
 const book = ref<IBook | null>(null);
@@ -22,8 +23,8 @@ const goBack = () => {
 </script>
 
 <template>
-   <!-- Back Button -->
-    <button @click="goBack" class="back-button">Back</button>
+
+    <BackButton to="/" />
 
   <div v-if="book" class="book-view-container">
     <div class="book-details">
@@ -95,22 +96,6 @@ const goBack = () => {
   color: #444;
 }
 
-
-.back-button {
-  font-size: 1rem;
-  border-radius: 8px;
-  height: 1.5rem;
-  padding-left: 0.7rem;
-  padding-right: 0.7rem;
-  border: none;
-  cursor: pointer;
-  margin-top: 1.5rem;
-  margin-left: 1.5rem;
-}
-
-.back-button:hover {
-  background-color: #bdbdbd;
-}
 
 @media (max-width: 1024px) {
    .book-view-container {

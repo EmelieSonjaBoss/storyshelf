@@ -1,9 +1,15 @@
 <script setup lang="ts">
-import MainTable from "@/components/MainTable.vue";
-import api from "@/models/api";
 import { ref, onMounted, computed } from "vue";
+import api from "@/models/api";
 import type { IUser } from "@/types/IUser";
+
+import MainTable from "@/components/UserTable.vue";
+import BookTable from "@/components/BookTable.vue";
+import AddBookForm from "@/components/AddBookForm.vue";
 import AdminNav from "@/components/AdminNav.vue";
+import BackButton from "@/components/BackButton.vue";
+
+const currentSection = ref<"users" | "books" | "add">("users");
 
 const users = ref<IUser[]>([]);
 const columns = ["Username", "Password", "Is Admin", "Created At"];
@@ -28,8 +34,22 @@ const formattedUsers = computed(() => {
 </script>
 
 <template>
-  <AdminNav />
-  <MainTable :columns="columns" :data="formattedUsers" />
+
+  <BackButton to="/" />
+
+  <AdminNav @navigate="(section) => (currentSection = section)" />
+
+  <div v-if="currentSection === 'users'">
+    <MainTable :columns="columns" :data="formattedUsers" />
+  </div>
+
+  <div v-else-if="currentSection === 'books'">
+    <BookTable />
+  </div>
+
+  <div v-else-if="currentSection === 'add'">
+    <AddBookForm />
+  </div>
 </template>
 
 <style scoped></style>

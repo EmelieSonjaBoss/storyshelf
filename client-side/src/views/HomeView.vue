@@ -16,13 +16,14 @@ onMounted(async () => {
 });
 
 // Conpute a sorted list of all genres
-const allGenres = computed(() => {
-  const genreSet = new Set();
+const allGenres = computed<string[]>(() => {
+  const genreSet = new Set<string>();
   books.value.forEach((book) => {
     book.genres.forEach((genre) => genreSet.add(genre));
   });
   return ["All", ...Array.from(genreSet).sort()];
 });
+
 
 // Filter the books based on selected genre
 const filteredBooks = computed(() => {
@@ -79,6 +80,8 @@ const filteredBooks = computed(() => {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  font-family: "Geist", sans-serif;
+  font-weight: 400;
   font-size: 1rem;
   border-radius: 8px;
   height: 1.5rem;

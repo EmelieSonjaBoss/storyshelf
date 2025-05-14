@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import BookView from "../views/BookView.vue";
-import LoginView from "@/views/LoginView.vue";
-import RegisterView from "@/views/RegisterView.vue";
+import AuthView from "@/views/AuthView.vue";
 import AdminView from "@/views/AdminView.vue";
 import { createPinia } from "pinia";
 import useAuthStore from "@/stores/useAuthStore";
@@ -21,14 +20,9 @@ const router = createRouter({
       component: BookView,
     },
     {
-      path: "/login",
-      name: "Login",
-      component: LoginView,
-    },
-    {
-      path: "/register",
-      name: "Register",
-      component: RegisterView,
+      path: "/auth",
+      name: "Auth",
+      component: AuthView
     },
     {
       path: "/admin",

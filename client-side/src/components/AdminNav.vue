@@ -1,19 +1,21 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const emit = defineEmits(["navigate"]);
+</script>
 
 <template>
   <nav class="admin-nav">
-    <router-link class="icon-container" to="/Admin">
+    <div class="icon-container" @click="emit('navigate', 'users')">
       <img src="@/assets/icons/icon-user.svg" />
       Users
-    </router-link>
-    <router-link class="icon-container center-link" to="/Login">
+    </div>
+    <div class="icon-container center-link" @click="emit('navigate', 'books')">
       <img src="@/assets/icons/icon-book.svg" />
       Books
-    </router-link>
-    <router-link class="icon-container" to="/Login">
+    </div>
+    <div class="icon-container" @click="emit('navigate', 'add')">
       <img src="@/assets/icons/icon-plus.svg" />
       Add new book
-    </router-link>
+    </div>
   </nav>
 </template>
 
