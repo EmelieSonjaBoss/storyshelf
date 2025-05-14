@@ -31,7 +31,7 @@ const useAuthStore = defineStore("auth", {
 
     async logout() {
       try {
-        await api.post("/logout", {}, { withCredentials: true });
+        await api.post("/auth/logout", {}, { withCredentials: true });
         this.user = null;
         this.isAuthenticated = false;
       } catch (error) {
