@@ -18,7 +18,8 @@ import { verifyPassword } from "../services/authService";
  * @returns {Promise<void>}
  */
 export const register = async (req: Request, res: Response) => {
-  const { username, password, is_admin } = req.body;
+  console.log("Request body:", req.body);
+  const { username, password } = req.body;
 
   if (username === undefined) {
     res.status(400).json({ error: "Username is required" });
@@ -30,10 +31,7 @@ export const register = async (req: Request, res: Response) => {
     return;
   }
 
-  if (is_admin === undefined) {
-    res.status(400).json({ error: "Admin status is required" });
-    return;
-  }
+  const is_admin = req.body.is_admin !== undefined ? req.body.is_admin : false;
 
   try {
     const salt = await bcrypt.genSalt(10);
