@@ -1,18 +1,22 @@
-<!-- src/components/BackButton.vue -->
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 
+// Access the router instance to programmatically navigate
 const router = useRouter()
 
+// Define props with optional 'to' string for a target route
 defineProps<{
   to?: string
 }>()
 
+// Function to handle going back or navigating to a specific route
 function goBack(to?: string) {
   if (to) {
+    // Navigate to the specified route if provided
     router.push(to)
   } else {
-    router.back() // Behaves like browser back button
+    // Otherwise, go back in browser history (like the back button)
+    router.back()
   }
 }
 </script>
@@ -40,5 +44,4 @@ function goBack(to?: string) {
 .back-button:hover {
   background-color: #bfc3c5;
 }
-
 </style>

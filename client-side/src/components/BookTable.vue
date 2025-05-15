@@ -1,16 +1,19 @@
 <script setup lang="ts">
 import { useBookStore } from "@/stores/bookStore";
-import { onMounted } from "vue";
-import { ref } from "vue";
+import { onMounted, ref, nextTick } from "vue";
 import EditBookForm from "@/components/EditBookForm.vue";
 import type { IBook } from "@/types/IBook";
-import { nextTick } from "vue";
 
-
+// Access the global book store for state and actions
 const bookStore = useBookStore();
+
+// Track the book currently selected for editing
 const selectedBook = ref<IBook | null>(null);
+
+// Reference to the edit form container element for scrolling into view
 const editFormRef = ref<HTMLElement | null>(null);
 
+// Trigger editing mode by setting selectedBook and scrolling the edit form into view smoothly
 const editBook = (book: IBook) => {
   selectedBook.value = book;
   nextTick(() => {
@@ -18,20 +21,24 @@ const editBook = (book: IBook) => {
   });
 };
 
+// Close the edit form by clearing the selectedBook
 const closeEditForm = () => {
   selectedBook.value = null;
 };
 
+// Fetch the list of books when the component mounts
 onMounted(() => {
   bookStore.fetchBooks();
 });
 
+// Delete a book by its id through the store action
 const deleteBook = async (id: string) => {
-    await bookStore.deleteBook(id);
+  await bookStore.deleteBook(id);
 };
-
 </script>
+
 <template>
+  <!-- Main table displaying all books with their details -->
   <table class="main-table">
     <thead>
       <tr>
@@ -44,6 +51,7 @@ const deleteBook = async (id: string) => {
       </tr>
     </thead>
     <tbody>
+      <!-- Iterate over books from the store -->
       <tr v-for="book in bookStore.books" :key="book._id">
         <td class="row">{{ book.title }}</td>
         <td class="row">{{ book.description }}</td>
@@ -51,15 +59,19 @@ const deleteBook = async (id: string) => {
         <td class="row">{{ book.genres.join(', ') }}</td>
         <td class="row">{{ book.published_year }}</td>
         <td class="row">
+          <!-- Delete button calls deleteBook with book id -->
           <button class="action-btn delete-btn" @click="deleteBook(book._id)">Delete</button>
+          <!-- Edit button triggers editBook to open the edit form -->
           <button class="action-btn edit-btn" @click="editBook(book)">Edit</button>
         </td>
       </tr>
     </tbody>
   </table>
+
+  <!-- Edit form container, only shown if a book is selected -->
   <div ref="editFormRef">
-   <EditBookForm v-if="selectedBook" :book="selectedBook" @close="closeEditForm" />
-   </div>
+    <EditBookForm v-if="selectedBook" :book="selectedBook" @close="closeEditForm" />
+  </div>
 </template>
 
 <style scoped>
