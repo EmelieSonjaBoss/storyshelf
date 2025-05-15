@@ -24,6 +24,7 @@ onMounted(async () => {
 
     <BackButton to="/" />
 
+    <transition name="fade" mode="out-in">
   <div v-if="book" class="book-view-container">
     <div class="book-details">
 
@@ -53,6 +54,7 @@ onMounted(async () => {
       </div>
     </div>
   </div>
+  </transition>
 </template>
 
 <style scoped>
