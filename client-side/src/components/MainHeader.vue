@@ -27,7 +27,7 @@ console.log(auth.isAuthenticated);
     </div>
 
     <div class="title-wrapper">
-      <RouterLink to="/" class="h1-link">
+      <RouterLink to="/" class="h1-link hover">
         <h1>Storyshelf</h1>
       </RouterLink>
     </div>
@@ -36,7 +36,7 @@ console.log(auth.isAuthenticated);
       <RouterLink
         v-if="auth.isAuthenticated && auth.user?.is_admin"
         to="/admin"
-        class="icon-container"
+        class="icon-container hover"
         :aria-label="'Admin panel'"
       >
         <img src="@/assets/icons/icon-admin.svg" alt="" />
@@ -44,7 +44,7 @@ console.log(auth.isAuthenticated);
       </RouterLink>
 
       <button
-        class="icon-container"
+        class="icon-container hover"
         @click="handleLoginLogout"
         :aria-label="auth.isAuthenticated ? 'Logout' : 'Login'"
       >
@@ -92,9 +92,12 @@ console.log(auth.isAuthenticated);
   padding: 0.5rem;
 }
 
-.h1-link:hover {
-  color: #75380a; /* exempel: en varmare brun ton */
-  text-decoration: underline;
+.hover {
+  transition: filter 0.3s ease;
+}
+
+.hover:hover {
+  filter: drop-shadow(2px 2px 2px rgb(0, 0, 0, 0.4));
 }
 
 .icon-container {
