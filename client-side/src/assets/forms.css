@@ -31,7 +31,7 @@
 .form input[type="text"],
 .form input[type="password"] {
   padding: 0.6rem;
-  margin-top: 0.25rem;
+  margin: 0.25rem 0;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
