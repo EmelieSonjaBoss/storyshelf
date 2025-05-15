@@ -8,6 +8,7 @@ const emit = defineEmits(["switch-to-register"]);
 const username = ref("");
 const password = ref("");
 const errorMessage = ref("");
+const iconCross = new URL("@/assets/icons/icon-cross.svg", import.meta.url).href;
 
 const useAuth = useAuthStore();
 const router = useRouter();
@@ -35,8 +36,6 @@ const loginHandler = async () => {
   <section class="form-container">
     <h2 class="form-h2">Login</h2>
     <form class="form" @submit.prevent="loginHandler">
-      <span class="error" v-if="errorMessage">{{ errorMessage }}</span>
-
       <label for="login-username">
         Username:
         <input type="text" id="login-username" v-model="username" />
@@ -46,7 +45,10 @@ const loginHandler = async () => {
         Password:
         <input type="password" id="login-password" v-model="password" />
       </label>
-
+      <div v-if="errorMessage" class="message error" role="alert" aria-live="assertive">
+        <img :src="iconCross" alt="" />
+        {{ errorMessage }}
+      </div>
       <div class="form-actions">
         <input type="reset" value="Reset" />
         <input type="submit" value="Login" />
@@ -71,9 +73,11 @@ const loginHandler = async () => {
   font-size: 0.9rem;
 }
 
-.error {
-  color: red;
-  display: block;
-  margin-bottom: 1rem;
+.message {
+  font-family: "Geist", sans-serif;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  font-style: italic;
 }
 </style>

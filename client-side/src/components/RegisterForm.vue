@@ -2,6 +2,9 @@
 import api from "@/models/api";
 import { ref } from "vue";
 
+const iconCheck = new URL("@/assets/icons/icon-check.svg", import.meta.url).href;
+const iconCross = new URL("@/assets/icons/icon-cross.svg", import.meta.url).href;
+
 const username = ref("");
 const password = ref("");
 const usernameRegex = /^[a-zA-Z0-9_]{3,}$/;
@@ -90,8 +93,8 @@ console.log("Registering user:", {
           @blur="validateUsername"
         />
         <div v-if="usernameMessage" class="message" role="alert" aria-live="assertive">
-          <img v-if="isUsernameValid === true" src="@/assets/icons/icon-check.svg" alt="" />
-          <img v-else src="@/assets/icons/icon-cross.svg" alt="" />
+          <img v-if="isUsernameValid === true" :src="iconCheck" alt="" />
+          <img v-else :src="iconCross" alt="" />
           {{ usernameMessage }}
         </div>
       </label>
@@ -106,20 +109,20 @@ console.log("Registering user:", {
           v-model="password"
           @blur="validatePassword"
         />
-        <div v-if="passwordMessage" class="message error" role="alert" aria-live="assertive">
-          <img v-if="isPasswordValid === true" src="@/assets/icons/icon-check.svg" alt="" />
-          <img v-else src="@/assets/icons/icon-cross.svg" alt="" />
+        <div v-if="passwordMessage" class="message" role="alert" aria-live="assertive">
+          <img v-if="isPasswordValid === true" :src="iconCheck" alt="" />
+          <img v-else :src="iconCross" alt="" />
           {{ passwordMessage }}
         </div>
       </label>
 
       <!-- REGISTER ERROR -->
-      <div v-if="errorMessage" class="message error" role="alert" aria-live="assertive">
-        <img src="@/assets/icons/icon-cross.svg" alt="" />
+      <div v-if="errorMessage" class="message" role="alert" aria-live="assertive">
+        <img :src="iconCross" alt="" />
         {{ errorMessage }}
       </div>
       <div v-if="successMessage" class="message" role="alert" aria-live="assertive">
-        <img src="@/assets/icons/icon-check.svg" alt="" />
+        <img :src="iconCheck" alt="" />
         {{ successMessage }}
       </div>
 
@@ -149,7 +152,7 @@ console.log("Registering user:", {
 
 .message {
   font-family: "Geist", sans-serif;
-  font-size: 0.8rem;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   font-style: italic;
