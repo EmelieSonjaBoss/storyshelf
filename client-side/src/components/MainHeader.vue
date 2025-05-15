@@ -78,11 +78,6 @@ console.log(auth.isAuthenticated);
   height: 100%;
 }
 
-.img-wrapper,
-.icon-wrapper {
-  border: solid red;
-}
-
 .icon-wrapper {
   gap: 1rem;
 }
@@ -132,7 +127,6 @@ console.log(auth.isAuthenticated);
   .img-wrapper,
   .icon-wrapper {
     min-width: 120px;
-    border: solid red;
   }
 }
 </style>
