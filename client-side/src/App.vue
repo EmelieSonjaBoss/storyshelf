@@ -5,7 +5,10 @@ import MainHeader from "./components/MainHeader.vue";
 
 <template>
   <MainHeader />
-  <RouterView />
+  <transition name="fade" mode="out-in">
+    <RouterView />
+  </transition>
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>

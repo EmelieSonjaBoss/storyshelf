@@ -5,43 +5,53 @@ import { useBookStore } from "@/stores/bookStore";
 
 const bookStore = useBookStore();
 
+// Props: receive a book object or null for editing
 const props = defineProps<{
   book: IBook | null;
 }>();
 
+// Emits: only emits a "close" event to parent
 const emit = defineEmits<{
   (e: "close"): void;
 }>();
 
-// Define form fields
+// Form fields initialized from the passed book prop or empty strings
 const title = ref(props.book?.title || "");
 const description = ref(props.book?.description || "");
 const author = ref(props.book?.author || "");
-const genres = ref(props.book?.genres.join(", ") || ""); // comma-separated
+// Genres input as comma-separated string
+const genres = ref(props.book?.genres.join(", ") || "");
 const image = ref(props.book?.image || "");
 const published_year = ref(props.book?.published_year || "");
 
-// Success message state
+// State for displaying a success message after update
 const successMessage = ref("");
 
-// Handle form submission
+// Submit handler: constructs updated book and calls store action
 const submitForm = async () => {
   if (props.book) {
+    // Parse the published year as an integer
     const parsedYear = parseInt(published_year.value as string);
+
+    // Build the updated book object merging changes
     const updatedBook: IBook = {
       ...props.book,
       title: title.value,
       description: description.value,
       author: author.value,
+      // Split genres string into array, trimming whitespace
       genres: genres.value.split(",").map(g => g.trim()),
       image: image.value,
       published_year: parsedYear,
     };
 
     try {
+      // Await updating book in the store (API call)
       await bookStore.updateBook(updatedBook);
+      // Show success message
       successMessage.value = "Book successfully updated!";
 
+      // Clear the message after 4 seconds
       setTimeout(() => {
         successMessage.value = "";
       }, 4000);
@@ -87,7 +97,9 @@ const submitForm = async () => {
             {{ successMessage }}
           </div>
         </transition>
+        <!-- Close editor button emits "close" event -->
         <button type="button" @click="emit('close')" class="form-btn">Close Editor</button>
+        <!-- Submit button triggers submitForm -->
         <input type="submit" value="Update Book" />
       </div>
     </form>

@@ -5,20 +5,20 @@ import { useBookStore } from "@/stores/bookStore";
 
 const bookStore = useBookStore();
 
-
-// Define form fields
+// Form fields bound to input values
 const title = ref("");
 const description = ref("");
 const author = ref("");
-const genres = ref(""); // Input will be a comma-separated string, parsed to array
+const genres = ref(""); // Comma-separated genres input, parsed to array on submit
 const image = ref("");
 const published_year = ref("");
 
+// Message to show after successful submission or error
 const successMessage = ref("");
 
-// Handle form submission
+// Handles form submission to add a new book
 const submitForm = async () => {
-  // Construct a book object, omitting _id because the server generates it
+  // Prepare new book object; omit _id because backend generates it
   const newBook: Omit<IBook, "_id"> = {
     title: title.value,
     description: description.value,
@@ -28,24 +28,29 @@ const submitForm = async () => {
     published_year: parseInt(published_year.value),
   };
 
-
   try {
+    // Call store action to add the book
     await bookStore.addBook(newBook);
     successMessage.value = "Book successfully added!";
+
+    // Clear success message after 6 seconds
     setTimeout(() => {
       successMessage.value = "";
     }, 6000);
+
     resetForm();
   } catch (error) {
     console.error("Failed to add book:", error);
     successMessage.value = "There was an error adding the book.";
+
+    // Clear error message after 6 seconds
     setTimeout(() => {
       successMessage.value = "";
     }, 6000);
   }
 };
 
-
+// Reset all form fields to empty strings
 const resetForm = () => {
   title.value = "";
   description.value = "";
@@ -65,40 +70,46 @@ const resetForm = () => {
         Title:
         <input type="text" v-model="title" required />
       </label>
+
       <label>
         Description:
         <input type="text" v-model="description" required />
       </label>
+
       <label>
         Author:
         <input type="text" v-model="author" required />
       </label>
+
       <label>
         Genres (comma-separated):
         <input type="text" v-model="genres" required />
       </label>
+
       <label>
         Image URL:
         <input type="text" v-model="image" />
       </label>
+
       <label>
         Published Year:
         <input type="text" v-model="published_year" required />
       </label>
 
       <div class="form-actions">
+        <!-- Show success or error message with fade transition -->
         <transition name="fade">
           <div v-if="successMessage" class="success-message">
             {{ successMessage }}
           </div>
         </transition>
+
         <input type="reset" value="Reset" />
         <input type="submit" value="Add Book" />
       </div>
     </form>
   </div>
 </template>
-
 
 <style scoped>
 .form-container {
@@ -121,6 +132,7 @@ const resetForm = () => {
   pointer-events: none;
 }
 
+/* Fade transition for success message */
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s ease;
 }
@@ -132,5 +144,4 @@ const resetForm = () => {
 .fade-enter-to, .fade-leave-from {
   opacity: 1;
 }
-
 </style>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import api from "../models/api";
 import type { IBook } from '../types/IBook';
 import BackButton from "@/components/BackButton.vue";
@@ -8,7 +8,9 @@ import BackButton from "@/components/BackButton.vue";
 // The fetched book
 const book = ref<IBook | null>(null);
 const route = useRoute();
-const router = useRouter();
+
+// Track image load state
+const imageLoaded = ref(false);
 
 // Fetch books when the component is mounted
 onMounted(async () => {
@@ -22,12 +24,19 @@ onMounted(async () => {
 
     <BackButton to="/" />
 
+    <transition name="fade" mode="out-in">
   <div v-if="book" class="book-view-container">
     <div class="book-details">
 
       <!-- Book Cover -->
       <div class="book-cover-container">
-        <img :src="book.image" :alt="book.title" class="book-cover" />
+             <img
+          :src="book.image"
+          :alt="book.title"
+          class="book-cover"
+          :class="{ loaded: imageLoaded }"
+          @load="imageLoaded = true"
+        />
       </div>
 
       <!-- Book Info -->
@@ -45,6 +54,7 @@ onMounted(async () => {
       </div>
     </div>
   </div>
+  </transition>
 </template>
 
 <style scoped>
@@ -71,6 +81,14 @@ onMounted(async () => {
   max-height: 400px;
   object-fit: contain;
   border-radius: 8px;
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.book-cover.loaded {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .book-info {
@@ -92,16 +110,13 @@ onMounted(async () => {
   color: #444;
 }
 
-
 @media (max-width: 1024px) {
-   .book-view-container {
-  padding: 5rem;
-}
+  .book-view-container {
+    padding: 5rem;
+  }
 }
 
 @media (max-width: 600px) {
-
-
   .book-details {
     flex-direction: column;
     align-items: center;
@@ -120,6 +135,5 @@ onMounted(async () => {
   .book-view-container {
     padding: 2rem;
   }
-
 }
 </style>
