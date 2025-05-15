@@ -12,7 +12,7 @@ import router from "./router";
 import { createPinia } from "pinia";
 
 // Create Pinia instance for state management
-const pinia = createPinia();
+const pinia = createPinia;
 
 // Create Vue app instance
 const app = createApp(App);
