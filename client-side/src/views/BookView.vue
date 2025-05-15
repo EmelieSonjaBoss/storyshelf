@@ -16,10 +16,6 @@ onMounted(async () => {
   book.value = response.data;
 });
 
-// Method to navigate back to the homepage
-const goBack = () => {
-  router.push('/');
-};
 </script>
 
 <template>
