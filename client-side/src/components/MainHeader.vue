@@ -19,7 +19,11 @@ console.log(auth.isAuthenticated);
 <template>
   <header class="header">
     <div class="img-wrapper">
-      <img class="header-img" src="@/assets/images/book-header.png" alt="Open book" />
+      <img
+        class="header-img"
+        src="@/assets/images/shelf-header.png"
+        alt="Small wooden bookshelf with books ant a plant."
+      />
     </div>
 
     <div class="title-wrapper">
@@ -58,13 +62,12 @@ console.log(auth.isAuthenticated);
   background-color: #ede6e6;
   display: flex;
   align-items: center;
-  height: 6.25rem;
+  height: 5.25rem;
   width: 100vw;
 }
 
 .header-img {
-  height: 100%;
-  width: auto;
+  max-height: 90%;
   object-fit: contain;
 }
 
@@ -79,13 +82,19 @@ console.log(auth.isAuthenticated);
 }
 
 .icon-wrapper {
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .h1-link {
   text-transform: uppercase;
   text-decoration: none;
   color: inherit;
+  padding: 0.5rem;
+}
+
+.h1-link:hover {
+  color: #75380a; /* exempel: en varmare brun ton */
+  text-decoration: underline;
 }
 
 .icon-container {
@@ -98,25 +107,23 @@ console.log(auth.isAuthenticated);
 }
 
 .icon-container img {
-  height: 20px;
-  width: 20px;
+  height: 18px;
+  width: 18px;
 }
 
 .login-text {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   color: #333;
   font-family: "Geist", sans-serif;
 }
 
 @media only screen and (min-width: 620px) {
-  .login-text {
-    font-size: 1rem;
+  .header {
+    height: 7rem;
   }
 
-  .header-img {
-    height: 100%;
-    width: auto;
-    object-fit: contain;
+  .login-text {
+    font-size: 1rem;
   }
 
   .icon-container img {
@@ -128,5 +135,9 @@ console.log(auth.isAuthenticated);
   .icon-wrapper {
     min-width: 120px;
   }
+}
+
+.icon-wrapper {
+  gap: 1.4rem;
 }
 </style>
