@@ -19,23 +19,34 @@ console.log(auth.isAuthenticated);
 <template>
   <header class="header">
     <div class="img-wrapper">
-      <img class="header-img" src="@/assets/images/book-header.png" alt="Open book" />
+      <img
+        class="header-img"
+        src="@/assets/images/shelf-header.png"
+        alt="Small wooden bookshelf with books ant a plant."
+      />
     </div>
     <div class="title-wrapper">
-      <RouterLink to="/" class="h1-link">
+      <RouterLink to="/" class="h1-link hover">
         <h1>Storyshelf</h1>
       </RouterLink>
     </div>
 
     <div class="icon-wrapper">
-
-      <RouterLink v-if="auth.isAuthenticated && auth.user?.is_admin" to="/admin" class="icon-container"
-        :aria-label="'Admin panel'">
+      <RouterLink
+        v-if="auth.isAuthenticated && auth.user?.is_admin"
+        to="/admin"
+        class="icon-container hover"
+        :aria-label="'Admin panel'"
+      >
         <img src="@/assets/icons/icon-admin.svg" alt="" />
         <span class="login-text">Admin</span>
       </RouterLink>
 
-      <button class="icon-container" @click="handleLoginLogout" :aria-label="auth.isAuthenticated ? 'Logout' : 'Login'">
+      <button
+        class="icon-container hover"
+        @click="handleLoginLogout"
+        :aria-label="auth.isAuthenticated ? 'Logout' : 'Login'"
+      >
         <img src="@/assets/icons/icon-user.svg" alt="" />
         <span class="login-text">
           {{ auth.isAuthenticated ? "Logout" : "Login" }}
@@ -50,13 +61,12 @@ console.log(auth.isAuthenticated);
   background-color: #ede6e6;
   display: flex;
   align-items: center;
-  height: 6.25rem;
+  height: 5.25rem;
   width: 100vw;
 }
 
 .header-img {
-  height: 100%;
-  width: auto;
+  max-height: 90%;
   object-fit: contain;
 }
 
@@ -71,13 +81,22 @@ console.log(auth.isAuthenticated);
 }
 
 .icon-wrapper {
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .h1-link {
   text-transform: uppercase;
   text-decoration: none;
   color: inherit;
+  padding: 0.5rem;
+}
+
+.hover {
+  transition: filter 0.3s ease;
+}
+
+.hover:hover {
+  filter: drop-shadow(2px 2px 2px rgb(0, 0, 0, 0.4));
 }
 
 .icon-container {
@@ -90,25 +109,23 @@ console.log(auth.isAuthenticated);
 }
 
 .icon-container img {
-  height: 20px;
-  width: 20px;
+  height: 18px;
+  width: 18px;
 }
 
 .login-text {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   color: #333;
   font-family: "Geist", sans-serif;
 }
 
 @media only screen and (min-width: 620px) {
-  .login-text {
-    font-size: 1rem;
+  .header {
+    height: 7rem;
   }
 
-  .header-img {
-    height: 100%;
-    width: auto;
-    object-fit: contain;
+  .login-text {
+    font-size: 1rem;
   }
 
   .icon-container img {
@@ -120,5 +137,9 @@ console.log(auth.isAuthenticated);
   .icon-wrapper {
     min-width: 120px;
   }
+}
+
+.icon-wrapper {
+  gap: 1.4rem;
 }
 </style>

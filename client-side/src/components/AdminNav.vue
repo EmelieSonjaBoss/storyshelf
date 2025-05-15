@@ -4,15 +4,15 @@ const emit = defineEmits(["navigate"]);
 
 <template>
   <nav class="admin-nav">
-    <div class="icon-container" @click="emit('navigate', 'users')">
+    <div class="icon-container hover" @click="emit('navigate', 'users')">
       <img src="@/assets/icons/icon-user.svg" />
       Users
     </div>
-    <div class="icon-container center-link" @click="emit('navigate', 'books')">
+    <div class="icon-container center-link hover" @click="emit('navigate', 'books')">
       <img src="@/assets/icons/icon-book.svg" />
       Books
     </div>
-    <div class="icon-container" @click="emit('navigate', 'add')">
+    <div class="icon-container hover" @click="emit('navigate', 'add')">
       <img src="@/assets/icons/icon-plus.svg" />
       Add new book
     </div>
@@ -28,7 +28,9 @@ const emit = defineEmits(["navigate"]);
 
 .icon-container {
   color: black;
+  font-family: "Geist", sans-serif;
   font-size: 0.8rem;
+  text-align: center;
   text-decoration: none;
   flex: 0 0 auto;
   display: flex;
@@ -36,7 +38,7 @@ const emit = defineEmits(["navigate"]);
   flex-direction: column;
   gap: 6px;
   cursor: pointer;
-  width: 6rem;
+  width: 4rem;
 }
 
 .icon-container img {
@@ -44,9 +46,23 @@ const emit = defineEmits(["navigate"]);
   height: 25px;
 }
 
+.hover {
+  transition: filter 0.3s ease;
+}
+
+.hover:hover {
+  filter: drop-shadow(2px 2px 2px rgb(0, 0, 0, 0.4));
+}
+
 @media only screen and (min-width: 620px) {
   .icon-container {
     font-size: 1rem;
+    width: 6.8rem;
+  }
+
+  .icon-container img {
+    width: 35px;
+    height: 35px;
   }
 }
 </style>

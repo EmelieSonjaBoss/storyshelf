@@ -18,26 +18,32 @@ const { columns, data } = defineProps({
 </script>
 
 <template>
-  <table class="main-table">
-    <thead>
-      <tr>
-        <th class="column" v-for="column in columns" :key="column">{{ column }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(row, index) in data" :key="index">
-        <td class="row" v-for="(value, key) in row" :key="key">{{ value }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-wrapper">
+    <table class="main-table">
+      <thead>
+        <tr>
+          <th class="column" v-for="column in columns" :key="column">{{ column }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(row, index) in data" :key="index">
+          <td class="row" v-for="(value, key) in row" :key="key">{{ value }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <style scoped>
+.table-wrapper {
+  overflow-x: auto;
+  margin: 50px;
+}
+
 .main-table {
-  width: 80vw;
+  width: 100%;
   border-collapse: collapse;
   border: 1px solid #e1e6e9;
-  margin: 50px auto;
 }
 
 .main-table th,
@@ -65,5 +71,11 @@ tbody tr:nth-child(odd) {
 
 tbody tr:nth-child(even) {
   background-color: #ede6e6;
+}
+
+@media only screen and (min-width: 620px) {
+  .row {
+    font-size: 1rem;
+  }
 }
 </style>

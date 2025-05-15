@@ -3,7 +3,6 @@ import { useBookStore } from "@/stores/bookStore";
 import { onMounted, ref, nextTick } from "vue";
 import EditBookForm from "@/components/EditBookForm.vue";
 import type { IBook } from "@/types/IBook";
-
 // Access the global book store for state and actions
 const bookStore = useBookStore();
 
@@ -34,39 +33,42 @@ onMounted(() => {
 // Delete a book by its id through the store action
 const deleteBook = async (id: string) => {
   await bookStore.deleteBook(id);
+  await bookStore.deleteBook(id);
 };
 </script>
 
 <template>
-  <!-- Main table displaying all books with their details -->
+  <div class="table-wrapper">
+    <!-- Main table displaying all books with their details -->
   <table class="main-table">
-    <thead>
-      <tr>
-        <th class="column">Title</th>
-        <th class="column">Description</th>
-        <th class="column">Author</th>
-        <th class="column">Genres</th>
-        <th class="column">Published</th>
-        <th class="column">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Iterate over books from the store -->
+      <thead>
+        <tr>
+          <th class="column">Title</th>
+          <th class="column">Description</th>
+          <th class="column">Author</th>
+          <th class="column">Genres</th>
+          <th class="column">Published</th>
+          <th class="column">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Iterate over books from the store -->
       <tr v-for="book in bookStore.books" :key="book._id">
-        <td class="row">{{ book.title }}</td>
-        <td class="row">{{ book.description }}</td>
-        <td class="row">{{ book.author }}</td>
-        <td class="row">{{ book.genres.join(', ') }}</td>
-        <td class="row">{{ book.published_year }}</td>
-        <td class="row">
-          <!-- Delete button calls deleteBook with book id -->
+          <td class="row">{{ book.title }}</td>
+          <td class="row">{{ book.description }}</td>
+          <td class="row">{{ book.author }}</td>
+          <td class="row">{{ book.genres.join(", ") }}</td>
+          <td class="row">{{ book.published_year }}</td>
+          <td class="row">
+            <!-- Delete button calls deleteBook with book id -->
           <button class="action-btn delete-btn" @click="deleteBook(book._id)">Delete</button>
-          <!-- Edit button triggers editBook to open the edit form -->
+            <!-- Edit button triggers editBook to open the edit form -->
           <button class="action-btn edit-btn" @click="editBook(book)">Edit</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <!-- Edit form container, only shown if a book is selected -->
   <div ref="editFormRef">
@@ -75,11 +77,15 @@ const deleteBook = async (id: string) => {
 </template>
 
 <style scoped>
+.table-wrapper {
+  overflow-x: auto;
+  margin: 50px;
+}
+
 .main-table {
-  width: 80vw;
+  width: 100%;
   border-collapse: collapse;
   border: 1px solid #e1e6e9;
-  margin: 50px auto;
 }
 
 .main-table th,
@@ -128,5 +134,11 @@ tbody tr:nth-child(even) {
 
 .edit-btn:hover {
   background-color: #c9c9c9;
+}
+
+@media only screen and (min-width: 620px) {
+  .row {
+    font-size: 1rem;
+  }
 }
 </style>
