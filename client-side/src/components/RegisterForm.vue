@@ -109,7 +109,7 @@ console.log("Registering user:", {
           v-model="password"
           @blur="validatePassword"
         />
-        <div v-if="passwordMessage" class="message error" role="alert" aria-live="assertive">
+        <div v-if="passwordMessage" class="message" role="alert" aria-live="assertive">
           <img v-if="isPasswordValid === true" :src="iconCheck" alt="" />
           <img v-else :src="iconCross" alt="" />
           {{ passwordMessage }}
@@ -117,7 +117,7 @@ console.log("Registering user:", {
       </label>
 
       <!-- REGISTER ERROR -->
-      <div v-if="errorMessage" class="message error" role="alert" aria-live="assertive">
+      <div v-if="errorMessage" class="message" role="alert" aria-live="assertive">
         <img :src="iconCross" alt="" />
         {{ errorMessage }}
       </div>
