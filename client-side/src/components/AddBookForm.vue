@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import api from "@/models/api";
 import type { IBook } from "@/types/IBook";
+import { useBookStore } from "@/stores/bookStore";
+
+const bookStore = useBookStore();
+
 
 // Define form fields
 const title = ref("");
@@ -10,6 +13,8 @@ const author = ref("");
 const genres = ref(""); // Input will be a comma-separated string, parsed to array
 const image = ref("");
 const published_year = ref("");
+
+const successMessage = ref("");
 
 // Handle form submission
 const submitForm = async () => {
@@ -23,18 +28,24 @@ const submitForm = async () => {
     published_year: parseInt(published_year.value),
   };
 
+
   try {
-    // Send POST request to create a new book
-    await api.post("/books", newBook);
-    alert("Book successfully added!");
+    await bookStore.addBook(newBook);
+    successMessage.value = "Book successfully added!";
+    setTimeout(() => {
+      successMessage.value = "";
+    }, 6000);
     resetForm();
   } catch (error) {
     console.error("Failed to add book:", error);
-    alert("There was an error adding the book.");
+    successMessage.value = "There was an error adding the book.";
+    setTimeout(() => {
+      successMessage.value = "";
+    }, 6000);
   }
 };
 
-// Reset form fields to empty
+
 const resetForm = () => {
   title.value = "";
   description.value = "";
@@ -48,8 +59,7 @@ const resetForm = () => {
 <template>
   <div class="form-container">
     <h2 class="form-h2">Add New Book</h2>
-    
-     <!-- Prevent default submit/reset behavior and call handlers instead -->
+
     <form class="form" @submit.prevent="submitForm" @reset.prevent="resetForm">
       <label>
         Title:
@@ -75,9 +85,15 @@ const resetForm = () => {
         Published Year:
         <input type="text" v-model="published_year" required />
       </label>
+
       <div class="form-actions">
-        <input type="submit" value="Add Book" />
+        <transition name="fade">
+          <div v-if="successMessage" class="success-message">
+            {{ successMessage }}
+          </div>
+        </transition>
         <input type="reset" value="Reset" />
+        <input type="submit" value="Add Book" />
       </div>
     </form>
   </div>
@@ -88,4 +104,33 @@ const resetForm = () => {
 .form-container {
   padding-top: 3rem;
 }
+
+.form-actions {
+  position: relative;
+}
+
+.success-message {
+  position: absolute;
+  bottom: 4.5rem;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: "Geist", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-to, .fade-leave-from {
+  opacity: 1;
+}
+
 </style>
