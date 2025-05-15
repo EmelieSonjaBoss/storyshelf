@@ -13,7 +13,7 @@ const handleLoginLogout = () => {
     router.push("/auth");
   }
 };
-console.log(auth.isAuthenticated);
+
 </script>
 
 <template>

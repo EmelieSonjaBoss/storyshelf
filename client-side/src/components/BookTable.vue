@@ -33,7 +33,6 @@ onMounted(() => {
 // Delete a book by its id through the store action
 const deleteBook = async (id: string) => {
   await bookStore.deleteBook(id);
-  await bookStore.deleteBook(id);
 };
 </script>
 
