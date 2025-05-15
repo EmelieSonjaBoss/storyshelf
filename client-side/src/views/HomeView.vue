@@ -96,7 +96,7 @@ select {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  justify-content: space-between;
+  justify-content: left;
 }
 
 .book-card {
@@ -129,6 +129,12 @@ select {
 .book-info p {
   margin: 0.3rem 0;
   font-size: 1rem;
+}
+
+@media (max-width: 1300px) { /* For smaller desktops */
+  .book-card {
+    width: calc(33.333% - 1rem);
+  }
 }
 
 @media (max-width: 1024px) {
