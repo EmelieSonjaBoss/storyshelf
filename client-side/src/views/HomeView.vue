@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, reactive } from "vue";
 import api from "../models/api";
 import type { IBook } from '../types/IBook';
 
@@ -8,6 +8,9 @@ const books = ref<IBook[]>([]);
 
 // Currently selected genre for filtering
 const selectedGenre = ref("All");
+
+// Track which images have loaded
+const loadedImages = reactive<{ [key: string]: boolean }>({});
 
 // Fetch books when the component is mounted
 onMounted(async () => {
@@ -24,17 +27,20 @@ const allGenres = computed<string[]>(() => {
   return ["All", ...Array.from(genreSet).sort()];
 });
 
-
 // Filter the books based on selected genre
 const filteredBooks = computed(() => {
   if (selectedGenre.value === "All") return books.value;
   return books.value.filter((book) => book.genres.includes(selectedGenre.value));
 });
+
+function onImageLoad(id: string) {
+  loadedImages[id] = true;
+}
+
 </script>
 
 <template>
   <div class="home-container">
-
 
     <!-- Genre Filter -->
     <div class="filter-bar">
@@ -50,7 +56,13 @@ const filteredBooks = computed(() => {
     <div class="book-grid">
       <div class="book-card" v-for="book in filteredBooks" :key="book._id">
         <router-link :to="`/books/${book._id}`">
-          <img :src="book.image" :alt="book.title" class="book-cover" />
+           <img
+            :src="book.image"
+            :alt="book.title"
+            class="book-cover"
+            :class="{ loaded: loadedImages[book._id] }"
+            @load="onImageLoad(book._id)"
+          />
         </router-link>
         <div class="book-info">
           <h2>{{ book.title }}</h2>
@@ -111,9 +123,22 @@ select {
   overflow: hidden;
 }
 
+/* Fade-in transition for book covers */
 .book-cover {
-  width: 100px;
+  width: 100%;
   height: auto;
+  max-height: 220px;
+  object-fit: contain;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.book-cover.loaded {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .book-info {

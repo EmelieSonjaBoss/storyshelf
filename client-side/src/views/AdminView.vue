@@ -67,9 +67,12 @@ const deleteBook = async (id: string) => {
 
 <template>
 
+
   <BackButton to="/" />
 
   <AdminNav @navigate="(section) => (currentSection = section)" />
+
+  <transition name="fade" mode="out-in">
 
   <div v-if="currentSection === 'users'">
     <UserTable :columns="columns" :data="formattedUsers" />
@@ -83,6 +86,9 @@ const deleteBook = async (id: string) => {
   <div v-else-if="currentSection === 'add'">
     <AddBookForm />
   </div>
+
+</transition>
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>
