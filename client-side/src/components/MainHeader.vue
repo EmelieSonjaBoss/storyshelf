@@ -21,7 +21,6 @@ console.log(auth.isAuthenticated);
     <div class="img-wrapper">
       <img class="header-img" src="@/assets/images/book-header.png" alt="Open book" />
     </div>
-
     <div class="title-wrapper">
       <RouterLink to="/" class="h1-link">
         <h1>Storyshelf</h1>
@@ -29,21 +28,14 @@ console.log(auth.isAuthenticated);
     </div>
 
     <div class="icon-wrapper">
-      <RouterLink
-        v-if="auth.isAuthenticated && auth.user?.is_admin"
-        to="/admin"
-        class="icon-container"
-        :aria-label="'Admin panel'"
-      >
+
+      <RouterLink v-if="auth.isAuthenticated && auth.user?.is_admin" to="/admin" class="icon-container"
+        :aria-label="'Admin panel'">
         <img src="@/assets/icons/icon-admin.svg" alt="" />
         <span class="login-text">Admin</span>
       </RouterLink>
 
-      <button
-        class="icon-container"
-        @click="handleLoginLogout"
-        :aria-label="auth.isAuthenticated ? 'Logout' : 'Login'"
-      >
+      <button class="icon-container" @click="handleLoginLogout" :aria-label="auth.isAuthenticated ? 'Logout' : 'Login'">
         <img src="@/assets/icons/icon-user.svg" alt="" />
         <span class="login-text">
           {{ auth.isAuthenticated ? "Logout" : "Login" }}

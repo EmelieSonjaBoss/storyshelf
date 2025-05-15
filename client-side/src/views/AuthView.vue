@@ -18,8 +18,10 @@ function switchToLogin() {
 <template>
   <BackButton to="/" />
   <div>
-    <LoginForm v-if="showLogin" @switch-to-register="switchToRegister" />
-    <RegisterForm v-else @switch-to-login="switchToLogin" />
+    <transition name="fade" mode="out-in">
+      <LoginForm v-if="showLogin" @switch-to-register="switchToRegister" />
+      <RegisterForm v-else @switch-to-login="switchToLogin" />
+    </transition>
   </div>
 </template>
 
@@ -31,14 +33,17 @@ function switchToLogin() {
   align-items: center;
   gap: 1rem;
 }
+
 .auth-toggle {
   display: flex;
   gap: 1rem;
 }
+
 .auth-toggle button {
   padding: 0.5rem 1rem;
   cursor: pointer;
 }
+
 .auth-toggle .active {
   font-weight: bold;
   background-color: #ddd;
