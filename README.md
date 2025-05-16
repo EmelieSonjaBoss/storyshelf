@@ -58,7 +58,7 @@ This project uses two `.env` files — one for the backend and one for the front
 
 ```env
 MONGODB_URL="mongodb+srv://boss:fed24@cluster0.ht9iarw.mongodb.net/storyshelf_db"
-JWT_SECRET="yb3ZodqLWQ7aUVk8zCEeHN"
+JWT_SECRET="hemligthemligt"
 ```
 
 ### 📁 `client-side/.env`
