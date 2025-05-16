@@ -9,6 +9,7 @@
  */
 
 export interface IUser {
+  _id: string;
   username: string;
   password: string;
   is_admin: boolean;
