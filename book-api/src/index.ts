@@ -22,7 +22,7 @@ app.use(express.json()); // Parses incoming JSON payloads
 app.use(cookieParser()); // Parses cookies attached to incoming requests
 app.use(
   cors({
-    origin: "https://storyshelf-client.vercel.app/",
+    origin: "https://storyshelf-client.vercel.app",
     // origin: "http://localhost:5173", // Adjust this in production to whitelist domains <--
     credentials: true, // Allows cookies and other credentials to be sent with requests
   })
