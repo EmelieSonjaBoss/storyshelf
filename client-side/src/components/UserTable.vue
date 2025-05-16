@@ -1,20 +1,27 @@
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { defineProps, ref } from "vue";
+import type { IUser } from "@/types/IUser";
 
+/**
+ * RowData represents a flat key-value mapping of user display data.
+ * Used for rendering simplified table rows (e.g., stringified boolean for "is_admin").
+ */
 interface RowData {
   [key: string]: string | boolean;
 }
 
-const { columns, data } = defineProps({
-  columns: {
-    type: Array as () => string[],
-    required: true,
-  },
-  data: {
-    type: Array as () => RowData[],
-    required: true,
-  },
-});
+// Emits events for parent components to handle edit/delete actions
+const emit = defineEmits<{
+  (e: "edit", user: IUser): void;
+  (e: "delete", userId: string): void;
+}>();
+
+// Props for configuring the table and referencing original user data
+const props = defineProps<{
+  columns: string[];     // Column titles for the table header
+  data: RowData[];       // Display-processed row values (e.g., mapped booleans)
+  rawUsers: IUser[];     // Full user objects (used for edit/delete actions)
+}>();
 </script>
 
 <template>
@@ -22,18 +29,26 @@ const { columns, data } = defineProps({
     <table class="main-table">
       <thead>
         <tr>
-          <th class="column" v-for="column in columns" :key="column">{{ column }}</th>
-           <th class="column">Actions</th>
+          <th v-for="column in columns" :key="column">{{ column }}</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(row, index) in data" :key="index">
           <td class="row" v-for="(value, key) in row" :key="key">{{ value }}</td>
           <td class="row">
-            <!-- Delete button calls deleteBook with book id -->
-          <button class="action-btn delete-btn">Delete</button>
-            <!-- Edit button triggers editBook to open the edit form -->
-          <button class="action-btn edit-btn">Edit</button>
+            <button
+              class="action-btn delete-btn"
+              @click="$emit('delete', rawUsers[index]._id)"
+            >
+              Delete
+            </button>
+            <button
+              class="action-btn edit-btn"
+              @click="$emit('edit', rawUsers[index])"
+            >
+              Edit
+            </button>
           </td>
         </tr>
       </tbody>
