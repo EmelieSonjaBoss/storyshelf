@@ -20,3 +20,9 @@ Ansvarsområde 2 - Emelie Boss
 12/5 Installationer på klient-sidan, gick sådär men Malin fixade det sedan. Fick upp bok-titlarna på HomeView klient-sidan.
 
 13/5 Skapade massa nya böcker. Gjorde "klart" HomeView med bilder och front-end filtrering. Skapade även BookView.
+
+14/5 Fixade edit/delete för böcker på adminpanelen.
+
+15/5 Stylade bok-delen på admin sidan. Skapade en bugg för inlogg som jag fick lösa.
+
+16/5 Redovisning. Fixade user edit/delete på adminpanelen.

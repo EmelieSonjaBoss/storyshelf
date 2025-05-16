@@ -18,6 +18,10 @@ const username = ref(props.user.username);
 const password = ref(""); // Leave blank to keep unchanged
 const isAdmin = ref(props.user.is_admin);
 
+/**
+ * Watches for changes to the `user` prop and updates the local form fields accordingly.
+ * This ensures that when a different user is selected for editing, the form reflects the correct values.
+ */
 watch(
   () => props.user,
   (newUser) => {
