@@ -1,0 +1,108 @@
+[{
+  "_id": {
+    "$oid": "68245eb377ad4827d42b37c7"
+  },
+  "username": "Login",
+  "password": "$2b$10$DvRoZsmEg2wTX78n0BTQL.Uk3WLrh/AEWZ50NPVuS0.5RDu/X191W",
+  "is_admin": false,
+  "created_at": {
+    "$date": "2025-05-14T09:13:23.688Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68247884b5fbe3dfe07f7424"
+  },
+  "username": "emelie",
+  "password": "$2b$10$oiW/039Xx5bExR.wJFVyAuMIGQ6wVEUVGKbaK/cqUekdDTAlB7cRm",
+  "is_admin": true,
+  "created_at": {
+    "$date": "2025-05-14T11:03:32.068Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68249f7897665d55cbebc887"
+  },
+  "username": "Notadmin",
+  "password": "$2b$10$WdGYqLB7s2gyXUM6Wd61uuL4uVXqLL2Awi6fK5OlWLDSSX0ZpFbfa",
+  "is_admin": false,
+  "created_at": {
+    "$date": "2025-05-14T13:49:44.254Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6825b095aad7a22663784b12"
+  },
+  "username": "Registertest",
+  "password": "$2b$10$K3YLMSnzTGg08HkrxyeS.O.Xe9gmsVvNKhTHPEJXiB0usIZaUyiFG",
+  "is_admin": true,
+  "created_at": {
+    "$date": "2025-05-15T09:15:01.822Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6825b27caad7a22663784b16"
+  },
+  "username": "Zxc",
+  "password": "$2b$10$uwllY6O5EspRol3/5crGVe7UvhcURd7wB.wiLJ7gsu64xGFd2OYYa",
+  "is_admin": false,
+  "created_at": {
+    "$date": "2025-05-15T09:23:08.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6825b818aad7a22663784b1a"
+  },
+  "username": "8799",
+  "password": "$2b$10$GVuwFHbClI56IDPe.NE8rOz7gmJHHPXt6I/9J9hyOdphHdgP/0ULO",
+  "is_admin": true,
+  "created_at": {
+    "$date": "2025-05-15T09:47:04.436Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6825ed0baad7a22663784b79"
+  },
+  "username": "Newtest",
+  "password": "$2b$10$C9ujEejh54Hst94Vx87O1.DPLVRIfLG6wayv4z6KM6BpJccEy8R/K",
+  "is_admin": true,
+  "created_at": {
+    "$date": "2025-05-15T13:32:59.054Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6826e88f2d990bc63c80486e"
+  },
+  "username": "sibar",
+  "password": "$2b$10$oY0D.q.eYI5.6CAemWs1CON1ZgZ.idp7wVx5j/4m68cWxw8OG8HIm",
+  "is_admin": true,
+  "created_at": {
+    "$date": "2025-05-16T07:26:07.063Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6827025f5b5a26f85209ee07"
+  },
+  "username": "Newuser",
+  "password": "$2b$10$O.txlandfkyVL2VRk23O1ef2BnRJ7mMFDmUlZbquo6KjdPw3WLsS.",
+  "is_admin": false,
+  "created_at": {
+    "$date": "2025-05-16T09:16:15.003Z"
+  },
+  "__v": 0
+}]

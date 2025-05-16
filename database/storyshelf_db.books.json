@@ -1,0 +1,599 @@
+[{
+  "_id": {
+    "$oid": "6822f4da5172c204da64821e"
+  },
+  "title": "Beloved",
+  "description": "A haunting novel about the legacy of slavery and a mother’s fierce love.",
+  "author": "Toni Morrison",
+  "genres": [
+    "Fiction",
+    "Historical",
+    "Literary"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/1400033411-L.jpg",
+  "published_year": 1987
+},
+{
+  "_id": {
+    "$oid": "6822f4da5172c204da64821f"
+  },
+  "title": "The Kite Runner",
+  "description": "A story of friendship, betrayal, and redemption set against the backdrop of Afghanistan's turmoil.",
+  "author": "Khaled Hosseini",
+  "genres": [
+    "Fiction",
+    "Historical",
+    "Drama"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/159463193X-L.jpg",
+  "published_year": 2002
+},
+{
+  "_id": {
+    "$oid": "6822f4da5172c204da648220"
+  },
+  "title": "American Gods",
+  "description": "A blend of mythology and Americana where gods walk among mortals in a modern war of faith.",
+  "author": "Neil Gaiman",
+  "genres": [
+    "Fantasy",
+    "Mythology",
+    "Fiction"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0062572237-L.jpg",
+  "published_year": 2002
+},
+{
+  "_id": {
+    "$oid": "6822f4da5172c204da648221"
+  },
+  "title": "The Secret History",
+  "description": "A dark academic thriller about a group of classics students at an elite college and a murder that binds them.",
+  "author": "Donna Tartt",
+  "genres": [
+    "Mystery",
+    "Psychological",
+    "Literary Fiction"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/1400031702-L.jpg",
+  "published_year": 1992
+},
+{
+  "_id": {
+    "$oid": "6822f4da5172c204da648222"
+  },
+  "title": "Never Let Me Go",
+  "description": "A dystopian reflection on identity, love, and the meaning of life in a world of human cloning.",
+  "author": "Kazuo Ishiguro",
+  "genres": [
+    "Science Fiction",
+    "Dystopian",
+    "Drama"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/1400078776-L.jpg",
+  "published_year": 2005
+},
+{
+  "_id": {
+    "$oid": "6822f4da5172c204da648223"
+  },
+  "title": "The Night Circus",
+  "description": "A magical competition between two illusionists unfolds in a mysterious, dreamlike circus.",
+  "author": "Erin Morgenstern",
+  "genres": [
+    "Fantasy",
+    "Romance",
+    "Magical Realism"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0307744434-L.jpg",
+  "published_year": 2011
+},
+{
+  "_id": {
+    "$oid": "6822f4da5172c204da648224"
+  },
+  "title": "The Handmaid's Tale",
+  "description": "A chilling dystopia where women are reduced to reproductive roles in a theocratic regime.",
+  "author": "Margaret Atwood",
+  "genres": [
+    "Dystopian",
+    "Science Fiction",
+    "Feminist"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/038549081X-L.jpg",
+  "published_year": 1985
+},
+{
+  "_id": {
+    "$oid": "6822f4da5172c204da648225"
+  },
+  "title": "A Man Called Ove",
+  "description": "A grumpy yet loveable old man finds his life changed by unexpected friendships.",
+  "author": "Fredrik Backman",
+  "genres": [
+    "Fiction",
+    "Contemporary",
+    "Humor"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/1476738025-L.jpg",
+  "published_year": 2012
+},
+{
+  "_id": {
+    "$oid": "6822f4da5172c204da648226"
+  },
+  "title": "The Goldfinch",
+  "description": "A boy’s life is shaped by a tragedy and a stolen painting in this epic literary novel.",
+  "author": "Donna Tartt",
+  "genres": [
+    "Fiction",
+    "Coming of Age",
+    "Literary"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0316055441-L.jpg",
+  "published_year": 2013
+},
+{
+  "_id": {
+    "$oid": "6822f4da5172c204da648227"
+  },
+  "title": "Shantaram",
+  "description": "A fugitive’s journey through the underworld of Bombay in this gripping, semi-autobiographical novel.",
+  "author": "Gregory David Roberts",
+  "genres": [
+    "Adventure",
+    "Thriller",
+    "Historical Fiction"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0312330537-L.jpg",
+  "published_year": 2003
+},
+{
+  "_id": {
+    "$oid": "6822f5015172c204da648229"
+  },
+  "title": "1984",
+  "description": "A dystopian novel exploring the dangers of totalitarianism and extreme political ideology.",
+  "author": "George Orwell",
+  "genres": [
+    "Dystopian",
+    "Political Fiction",
+    "Science Fiction"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0451524934-L.jpg",
+  "published_year": 1949
+},
+{
+  "_id": {
+    "$oid": "6822f5015172c204da64822a"
+  },
+  "title": "To Kill a Mockingbird",
+  "description": "A story of racial injustice and moral growth in the American South.",
+  "author": "Harper Lee",
+  "genres": [
+    "Fiction",
+    "Classic",
+    "Historical"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0061120081-L.jpg",
+  "published_year": 1960
+},
+{
+  "_id": {
+    "$oid": "6822f5015172c204da64822b"
+  },
+  "title": "The Catcher in the Rye",
+  "description": "A disenchanted teenager narrates his journey through New York City.",
+  "author": "J.D. Salinger",
+  "genres": [
+    "Fiction",
+    "Classic",
+    "Coming of Age"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0316769487-L.jpg",
+  "published_year": 1951
+},
+{
+  "_id": {
+    "$oid": "6822f5015172c204da64822c"
+  },
+  "title": "Pride and Prejudice",
+  "description": "A romantic novel centered on manners, upbringing, and moral rightness.",
+  "author": "Jane Austen",
+  "genres": [
+    "Fiction",
+    "Romance",
+    "Classic"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0141439513-L.jpg",
+  "published_year": 1813
+},
+{
+  "_id": {
+    "$oid": "6822f5015172c204da64822d"
+  },
+  "title": "Frankenstein",
+  "description": "A scientist’s creation of life leads to tragic consequences in this gothic classic.",
+  "author": "Mary Shelley",
+  "genres": [
+    "Science Fiction",
+    "Horror",
+    "Classic"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0486282112-L.jpg",
+  "published_year": 1818
+},
+{
+  "_id": {
+    "$oid": "6822f5015172c204da64822e"
+  },
+  "title": "Dracula",
+  "description": "The legendary vampire tale that introduced Count Dracula to literature.",
+  "author": "Bram Stoker",
+  "genres": [
+    "Horror",
+    "Gothic",
+    "Classic"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/014143984X-L.jpg",
+  "published_year": 1897
+},
+{
+  "_id": {
+    "$oid": "6822f5015172c204da64822f"
+  },
+  "title": "Brave New World",
+  "description": "A futuristic society engineered for stability clashes with individual freedom and emotion.",
+  "author": "Aldous Huxley",
+  "genres": [
+    "Dystopian",
+    "Science Fiction",
+    "Classic"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0060850523-L.jpg",
+  "published_year": 1932
+},
+{
+  "_id": {
+    "$oid": "6822f5015172c204da648230"
+  },
+  "title": "Fahrenheit 451",
+  "description": "In a future where books are banned, a fireman questions his role in a society without knowledge.",
+  "author": "Ray Bradbury",
+  "genres": [
+    "Dystopian",
+    "Science Fiction",
+    "Classic"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/1451673310-L.jpg",
+  "published_year": 1953
+},
+{
+  "_id": {
+    "$oid": "6822f5015172c204da648231"
+  },
+  "title": "Life of Pi",
+  "description": "A boy survives a shipwreck and shares a lifeboat with a Bengal tiger.",
+  "author": "Yann Martel",
+  "genres": [
+    "Adventure",
+    "Philosophical",
+    "Fiction"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0156027321-L.jpg",
+  "published_year": 2001
+},
+{
+  "_id": {
+    "$oid": "6822f5015172c204da648232"
+  },
+  "title": "The Alchemist",
+  "description": "A young shepherd journeys to discover a treasure and fulfill his personal legend.",
+  "author": "Paulo Coelho",
+  "genres": [
+    "Fiction",
+    "Philosophical",
+    "Adventure"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0061122416-L.jpg",
+  "published_year": 1988
+},
+{
+  "_id": {
+    "$oid": "6822f5455172c204da648234"
+  },
+  "title": "The Book Thief",
+  "description": "A young girl in Nazi Germany finds solace by stealing books and sharing them with others.",
+  "author": "Markus Zusak",
+  "genres": [
+    "Historical Fiction",
+    "Young Adult",
+    "War"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0375842209-L.jpg",
+  "published_year": 2005
+},
+{
+  "_id": {
+    "$oid": "6822f5455172c204da648235"
+  },
+  "title": "The Road",
+  "description": "A post-apocalyptic tale of a father and son journeying through a devastated landscape.",
+  "author": "Cormac McCarthy",
+  "genres": [
+    "Post-apocalyptic",
+    "Drama",
+    "Literary"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0307387895-L.jpg",
+  "published_year": 2006
+},
+{
+  "_id": {
+    "$oid": "6822f5455172c204da648236"
+  },
+  "title": "The Shadow of the Wind",
+  "description": "A boy in post-war Barcelona discovers a mysterious book that draws him into a literary mystery.",
+  "author": "Carlos Ruiz Zafón",
+  "genres": [
+    "Mystery",
+    "Historical Fiction",
+    "Literary"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0143034901-L.jpg",
+  "published_year": 2001
+},
+{
+  "_id": {
+    "$oid": "6822f5455172c204da648237"
+  },
+  "title": "The Name of the Wind",
+  "description": "A gifted young man tells the story of his life, from orphan to legendary wizard.",
+  "author": "Patrick Rothfuss",
+  "genres": [
+    "Fantasy",
+    "Adventure",
+    "Epic"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0756404746-L.jpg",
+  "published_year": 2007
+},
+{
+  "_id": {
+    "$oid": "6822f5455172c204da648238"
+  },
+  "title": "Siddhartha",
+  "description": "A philosophical novel about the spiritual journey of self-discovery by a man in ancient India.",
+  "author": "Hermann Hesse",
+  "genres": [
+    "Philosophy",
+    "Spirituality",
+    "Classic"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0553208845-L.jpg",
+  "published_year": 1922
+},
+{
+  "_id": {
+    "$oid": "6822f5455172c204da648239"
+  },
+  "title": "Moby-Dick",
+  "description": "Captain Ahab obsessively hunts the great white whale, Moby Dick, in this epic sea tale.",
+  "author": "Herman Melville",
+  "genres": [
+    "Adventure",
+    "Classic",
+    "Maritime"
+  ],
+  "image": "https://covers.openlibrary.org/b/id/6150479-L.jpg",
+  "published_year": 1851
+},
+{
+  "_id": {
+    "$oid": "6822f5455172c204da64823a"
+  },
+  "title": "Crime and Punishment",
+  "description": "A psychological novel exploring the mind of a murderer and the consequences of his actions.",
+  "author": "Fyodor Dostoevsky",
+  "genres": [
+    "Philosophical Fiction",
+    "Classic",
+    "Psychological"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0486415872-L.jpg",
+  "published_year": 1866
+},
+{
+  "_id": {
+    "$oid": "6822f5455172c204da64823b"
+  },
+  "title": "Jane Eyre",
+  "description": "An orphaned girl becomes a governess and falls in love with her mysterious employer.",
+  "author": "Charlotte Brontë",
+  "genres": [
+    "Gothic",
+    "Romance",
+    "Classic"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0142437204-L.jpg",
+  "published_year": 1847
+},
+{
+  "_id": {
+    "$oid": "6822f5455172c204da64823c"
+  },
+  "title": "The Hobbit",
+  "description": "Bilbo Baggins embarks on a quest to help dwarves reclaim their homeland from a dragon.",
+  "author": "J.R.R. Tolkien",
+  "genres": [
+    "Fantasy",
+    "Adventure",
+    "Classic"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/054792822X-L.jpg",
+  "published_year": 1937
+},
+{
+  "_id": {
+    "$oid": "6822f5455172c204da64823d"
+  },
+  "title": "The Picture of Dorian Gray",
+  "description": "A man remains eternally young while a hidden portrait reflects his moral decay.",
+  "author": "Oscar Wilde",
+  "genres": [
+    "Philosophical",
+    "Gothic",
+    "Classic"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0141439572-L.jpg",
+  "published_year": 1890
+},
+{
+  "_id": {
+    "$oid": "6822f5b75172c204da64823f"
+  },
+  "title": "The Outsiders",
+  "description": "A story about the rivalry between two gangs, the Greasers and the Socs, in 1960s Oklahoma.",
+  "author": "S.E. Hinton",
+  "genres": [
+    "Young Adult",
+    "Coming of Age",
+    "Fiction"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/014240733X-L.jpg",
+  "published_year": 1967
+},
+{
+  "_id": {
+    "$oid": "6822f5b75172c204da648240"
+  },
+  "title": "The Hunger Games",
+  "description": "In a dystopian future, a young girl must fight in a televised death match to survive.",
+  "author": "Suzanne Collins",
+  "genres": [
+    "Dystopian",
+    "Science Fiction",
+    "Adventure"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/9780439023481-L.jpg",
+  "published_year": 2008
+},
+{
+  "_id": {
+    "$oid": "6822f5b75172c204da648241"
+  },
+  "title": "The Great Gatsby",
+  "description": "A novel exploring themes of wealth, love, and the American Dream in the Roaring Twenties.",
+  "author": "F. Scott Fitzgerald",
+  "genres": [
+    "Fiction",
+    "Classic",
+    "Romance"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0743273567-L.jpg",
+  "published_year": 1925
+},
+{
+  "_id": {
+    "$oid": "6822f5b75172c204da648242"
+  },
+  "title": "The Lord of the Rings: The Fellowship of the Ring",
+  "description": "The first book in the epic fantasy series about a group of heroes who seek to destroy an evil ring.",
+  "author": "J.R.R. Tolkien",
+  "genres": [
+    "Fantasy",
+    "Adventure",
+    "Epic"
+  ],
+  "image": "https://covers.openlibrary.org/b/id/8231994-L.jpg",
+  "published_year": 1954
+},
+{
+  "_id": {
+    "$oid": "6822f5b75172c204da648243"
+  },
+  "title": "Harry Potter and the Sorcerer's Stone",
+  "description": "A young boy discovers he's a wizard and begins his first year at Hogwarts School of Witchcraft and Wizardry.",
+  "author": "J.K. Rowling",
+  "genres": [
+    "Fantasy",
+    "Young Adult",
+    "Adventure"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/059035342X-L.jpg",
+  "published_year": 1997
+},
+{
+  "_id": {
+    "$oid": "6822f5b75172c204da648244"
+  },
+  "title": "The Girl on the Train",
+  "description": "A psychological thriller about a woman who becomes involved in a missing person case.",
+  "author": "Paula Hawkins",
+  "genres": [
+    "Mystery",
+    "Thriller",
+    "Psychological"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/1594633665-L.jpg",
+  "published_year": 2015
+},
+{
+  "_id": {
+    "$oid": "6822f5b75172c204da648245"
+  },
+  "title": "The Silent Patient",
+  "description": "A psychotherapist attempts to uncover why a woman shot her husband and stopped speaking.",
+  "author": "Alex Michaelides",
+  "genres": [
+    "Psychological Thriller",
+    "Mystery"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/1250301696-L.jpg",
+  "published_year": 2019
+},
+{
+  "_id": {
+    "$oid": "6822f5b75172c204da648246"
+  },
+  "title": "The Night Circus",
+  "description": "Two young illusionists engage in a magical duel inside a mysterious circus.",
+  "author": "Erin Morgenstern",
+  "genres": [
+    "Fantasy",
+    "Romance",
+    "Magical Realism"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0385534639-L.jpg",
+  "published_year": 2011
+},
+{
+  "_id": {
+    "$oid": "6822f5b75172c204da648247"
+  },
+  "title": "The Martian",
+  "description": "A stranded astronaut must survive on Mars using his ingenuity and determination.",
+  "author": "Andy Weir",
+  "genres": [
+    "Science Fiction",
+    "Thriller",
+    "Adventure"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0553418025-L.jpg",
+  "published_year": 2011
+},
+{
+  "_id": {
+    "$oid": "6822f5b75172c204da648248"
+  },
+  "title": "Where the Crawdads Sing",
+  "description": "A woman growing up in the swamps of North Carolina becomes a suspect in a local murder case.",
+  "author": "Delia Owens",
+  "genres": [
+    "Mystery",
+    "Drama",
+    "Literary Fiction"
+  ],
+  "image": "https://covers.openlibrary.org/b/isbn/0735219095-L.jpg",
+  "published_year": 2018
+}]
