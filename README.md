@@ -4,7 +4,6 @@
 
 Storyshelf is a web-based book review platform where users can browse books. It features a separate admin panel for managing books and users — perfect for small community-driven libraries.
 
-
 ## ✨ Features
 
 - 🔍 Browse a growing collection of books
@@ -43,7 +42,6 @@ Storyshelf is a web-based book review platform where users can browse books. It 
 
 ## 📦 Installation
 
-
 ```bash
 git clone https://github.com/MalinRosenquist/storyshelf-app
 cd storyshelf
@@ -69,6 +67,17 @@ VITE_API_BASE_URL=http://localhost:3000
 
 ## ▶️ Running the Project (Dev)
 
+Make sure to change CORS origin in book-api/index.ts to `http://localhost:5173`
+
+```bash
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+```
+
 Start backend (e.g. on port 3000):
 
 ```bash
@@ -84,7 +93,9 @@ cd client-side
 npm install
 npm run dev
 ```
+
 ## 🔐 Authentication
+
 JWT tokens are issued on login and stored in HTTP-only cookies for security.
 
 Admin users are authorized to create, update, and delete both users and books.
