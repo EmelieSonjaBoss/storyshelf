@@ -1,17 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import LoginForm from '@/components/LoginForm.vue'
-import RegisterForm from '@/components/RegisterForm.vue'
-import BackButton from '@/components/BackButton.vue'
+import { ref } from "vue";
+import LoginForm from "@/components/LoginForm.vue";
+import RegisterForm from "@/components/RegisterForm.vue";
+import BackButton from "@/components/BackButton.vue";
 
-const showLogin = ref(true)
+// Show Login be default
+const showLogin = ref(true);
 
+// Switch to registerform
 function switchToRegister() {
-  showLogin.value = false
+  showLogin.value = false;
 }
 
+// Switch to registerform
 function switchToLogin() {
-  showLogin.value = true
+  showLogin.value = true;
 }
 </script>
 
@@ -19,12 +22,12 @@ function switchToLogin() {
   <BackButton to="/" />
   <div>
     <transition name="fade" mode="out-in">
+      <!-- Show login form if showLogin is true, else show register form -->
       <LoginForm v-if="showLogin" @switch-to-register="switchToRegister" />
       <RegisterForm v-else @switch-to-login="switchToLogin" />
     </transition>
   </div>
 </template>
-
 
 <style scoped>
 .auth-wrapper {

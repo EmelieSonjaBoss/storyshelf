@@ -1,17 +1,21 @@
 <script setup lang="ts">
+// Define an emit function to send a 'navigate' event with a target value ('users', 'books', 'add')
 const emit = defineEmits(["navigate"]);
 </script>
 
 <template>
   <nav class="admin-nav">
+    <!-- Navigation item: Users -->
     <div class="icon-container hover" @click="emit('navigate', 'users')">
       <img src="@/assets/icons/icon-user.svg" />
       Users
     </div>
+    <!-- Navigation item: Books -->
     <div class="icon-container center-link hover" @click="emit('navigate', 'books')">
       <img src="@/assets/icons/icon-book.svg" />
       Books
     </div>
+    <!-- Navigation item: Add new book -->
     <div class="icon-container hover" @click="emit('navigate', 'add')">
       <img src="@/assets/icons/icon-plus.svg" />
       Add new book
