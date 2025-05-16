@@ -2,9 +2,15 @@
 import useAuthStore from "@/stores/useAuthStore";
 import { RouterLink, useRouter } from "vue-router";
 
+// Access the authentication store and Vue Router instance
 const auth = useAuthStore();
 const router = useRouter();
 
+/**
+ * Handles login/logout behavior.
+ * - If the user is authenticated, log them out and redirect to home.
+ * - If not authenticated, redirect to the login page.
+ */
 const handleLoginLogout = () => {
   if (auth.isAuthenticated) {
     auth.logout();
@@ -13,11 +19,11 @@ const handleLoginLogout = () => {
     router.push("/auth");
   }
 };
-
 </script>
 
 <template>
   <header class="header">
+    <!-- Image section -->
     <div class="img-wrapper">
       <img
         class="header-img"
@@ -25,12 +31,15 @@ const handleLoginLogout = () => {
         alt="Small wooden bookshelf with books ant a plant."
       />
     </div>
+
+    <!-- Title section -->
     <div class="title-wrapper">
       <RouterLink to="/" class="h1-link hover">
         <h1>Storyshelf</h1>
       </RouterLink>
     </div>
 
+    <!-- Icons and login/logout -->
     <div class="icon-wrapper">
       <RouterLink
         v-if="auth.isAuthenticated && auth.user?.is_admin"
@@ -42,6 +51,7 @@ const handleLoginLogout = () => {
         <span class="login-text">Admin</span>
       </RouterLink>
 
+      <!-- Login/logout button -->
       <button
         class="icon-container hover"
         @click="handleLoginLogout"

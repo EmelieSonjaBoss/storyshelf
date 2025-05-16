@@ -85,8 +85,8 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
-      secure: true, // Consider setting to true in production with HTTPS
-      sameSite: "none",
+      secure: false, // Consider setting to true in production with HTTPS
+      sameSite: "strict",
       maxAge: 1000 * 60 * 15,
     });
     res.json({
