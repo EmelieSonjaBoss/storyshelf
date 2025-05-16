@@ -118,7 +118,7 @@ tbody tr:nth-child(even) {
   padding: 0.2rem 0.5rem;
   margin-right: 0.3rem;
   margin-bottom: 0.2rem;
-  font-size: 0.75rem;
+  font-size: 1rem;
   cursor: pointer;
   border-radius: 4px;
   border: 1px solid #bbb;
