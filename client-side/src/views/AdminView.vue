@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import { ref, onMounted, computed, nextTick } from "vue";
+import { ref, onMounted, computed, nextTick, type Ref } from "vue";
 import api from "@/models/api";
-import type { IUser } from "@/types/IUser";
 import type { IBook } from "@/types/IBook";
+import type { IUser } from "@/types/IUser";
+
+// Store
+import { useUserStore } from "@/stores/userStore";
+const userStore = useUserStore();
 
 // Components
 import UserTable from "@/components/UserTable.vue";
@@ -19,23 +23,11 @@ const currentSection = ref<"users" | "books" | "add">("users");
 // User Management
 // ---------------------
 
-const users = ref<IUser[]>([]);
 const columns = ["Username", "Password", "Is Admin", "Created At"];
 
-const selectedUser = ref<IUser | null>(null);
-const editUserRef = ref<HTMLElement | null>(null);
+const selectedUser: Ref<IUser | null> = ref(null);
 
-/**
- * Fetch all users from the API.
- */
-const refreshUsers = async () => {
-  try {
-    const res = await api.get("/users");
-    users.value = res.data;
-  } catch (error) {
-    console.error("Error fetching users", error);
-  }
-};
+const editUserRef = ref<HTMLElement | null>(null);
 
 /**
  * Delete a user by ID.
@@ -43,7 +35,7 @@ const refreshUsers = async () => {
 const deleteUser = async (id: string) => {
   try {
     await api.delete(`/users/${id}`);
-    users.value = users.value.filter((u) => u._id !== id);
+    userStore.users = userStore.users.filter((u) => u._id !== id);
   } catch (error) {
     console.error("Error deleting user", error);
   }
@@ -70,7 +62,7 @@ const closeEditUserForm = () => {
  * Format users for display in the table.
  */
 const formattedUsers = computed(() => {
-  return users.value.map((user) => ({
+  return userStore.users.map((user) => ({
     username: user.username,
     password: user.password,
     is_admin: user.is_admin ? "Yes" : "No",
@@ -114,12 +106,7 @@ const deleteBook = async (id: string) => {
 
 onMounted(async () => {
   try {
-    const [usersRes, booksRes] = await Promise.all([
-      api.get("/users"),
-      api.get("/books"),
-    ]);
-    users.value = usersRes.data;
-    books.value = booksRes.data;
+    await Promise.all([userStore.fetchUsers(), fetchBooks()]);
   } catch (error) {
     console.error("Error fetching admin data", error);
   }
@@ -136,7 +123,7 @@ onMounted(async () => {
       <UserTable
         :columns="columns"
         :data="formattedUsers"
-        :rawUsers="users"
+        :rawUsers="userStore.users"
         @edit="editUser"
         @delete="deleteUser"
       />
@@ -161,5 +148,4 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-/* Add admin-specific styles here if needed */
 </style>

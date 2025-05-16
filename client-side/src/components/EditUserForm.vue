@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import api from "@/models/api";
 import type { IUser } from "@/types/IUser";
+import { useUserStore } from "@/stores/userStore";
 
 /**
  * Props: The user to edit.
@@ -13,6 +13,8 @@ const props = defineProps<{ user: IUser }>();
  */
 const emit = defineEmits(["close"]);
 
+const userStore = useUserStore();
+
 // Form fields
 const username = ref(props.user.username);
 const password = ref(""); // Leave blank to keep unchanged
@@ -20,7 +22,6 @@ const isAdmin = ref(props.user.is_admin);
 
 /**
  * Watches for changes to the `user` prop and updates the local form fields accordingly.
- * This ensures that when a different user is selected for editing, the form reflects the correct values.
  */
 watch(
   () => props.user,
@@ -35,20 +36,22 @@ watch(
 const successMessage = ref("");
 
 /**
- * Sends a PATCH request to update the user data.
+ * Sends a PATCH request via the userStore to update the user data.
  * Shows a temporary success message and emits 'close' after success.
  */
 const saveChanges = async () => {
   try {
-    await api.patch(`/users/${props.user._id}`, {
+    const updatedUser: IUser = {
+      ...props.user,
       username: username.value,
-      password: password.value || undefined,
       is_admin: isAdmin.value,
-    });
+      // Only include password if it's provided
+      ...(password.value && { password: password.value }),
+    };
+
+    await userStore.updateUser(updatedUser);
 
     successMessage.value = "User updated successfully!";
-
-    // Clear message and close editor after short delay
     setTimeout(() => {
       successMessage.value = "";
       emit("close");
