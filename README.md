@@ -51,13 +51,14 @@ npm install
 
 This project uses two `.env` files — one for the backend and one for the frontend.
 
-###  `book-api/.env`
+Below are example values:
+
+### `book-api/.env`
 
 ```env
-MONGODB_URL="mongodb+srv://boss:fed24@cluster0.ht9iarw.mongodb.net/storyshelf_db"
-JWT_SECRET="hemligthemligt"
+MONGODB_URL="your_mongodb_connection_string_here"
+JWT_SECRET="your_jwt_secret_here"
 ```
-
 ###  `client-side/.env`
 
 ```env
