@@ -1,18 +1,17 @@
-# 📚 StoryShelf
+# StoryShelf
 
-## 🔎 Project Description
+## Project Description
 
-Storyshelf is a web-based book review platform where users can browse books. It features a separate admin panel for managing books and users — perfect for small community-driven libraries.
+Storyshelf is a fullstack web-based book review platform where users can browse books. It also includes a dedicated admin interface for managing both books and users. The project was built with a modern MEVN-style stack using Vue 3 on the frontend and Node.js/Express on the backend.
 
-## ✨ Features
+## Features
 
-- 🔍 Browse a growing collection of books
-- 📝 Authenticated users can leave reviews
-- 🧑‍💻 Admin-only panel for managing users and books
-- 🍪 JWT authentication stored in cookies
-- ⚙️ Built with a full MERN-style stack (MongoDB, Express, Vue 3, Node.js)
+-  Browse a growing collection of books
+-  Admin-only panel for managing users and books
+-  JWT authentication stored in cookies
+-  Built with a full MERN-style stack (MongoDB, Express, Vue 3, Node.js)
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 ### Frontend:
 
@@ -40,7 +39,7 @@ Storyshelf is a web-based book review platform where users can browse books. It 
 - **ESLint**: A linter to maintain consistent code style and catch errors.
 - **Prettier**: A code formatter to ensure consistent code style across the project.
 
-## 📦 Installation
+##  Installation
 
 ```bash
 git clone https://github.com/MalinRosenquist/storyshelf-app
@@ -48,24 +47,24 @@ cd storyshelf
 npm install
 ```
 
-## 🔐 Environment Variables
+##  Environment Variables
 
 This project uses two `.env` files — one for the backend and one for the frontend.
 
-### 📁 `book-api/.env`
+###  `book-api/.env`
 
 ```env
 MONGODB_URL="mongodb+srv://boss:fed24@cluster0.ht9iarw.mongodb.net/storyshelf_db"
 JWT_SECRET="hemligthemligt"
 ```
 
-### 📁 `client-side/.env`
+###  `client-side/.env`
 
 ```env
 VITE_API_BASE_URL=http://localhost:3000
 ```
 
-## ▶️ Running the Project (Dev)
+## ▶ Running the Project (Dev)
 
 Make sure to change CORS origin in book-api/index.ts to `http://localhost:5173`
 
@@ -94,7 +93,7 @@ npm install
 npm run dev
 ```
 
-## 🔐 Authentication
+##  Authentication
 
 JWT tokens are issued on login and stored in HTTP-only cookies for security.
 
@@ -102,14 +101,14 @@ Admin users are authorized to create, update, and delete both users and books.
 
 Regular users can only read content.
 
-## 👩‍💻 Authors
+##  Authors
 
 - [Malin Rosenquist](https://www.github.com/malinrosenquist)
 - [Emelie Boss](https://www.github.com/emeliesonjaboss)
 
 ## 📸 Screenshots
 
-### 🏠 Home
+###  Home
 
 ![Home](./screenshots/screenshot-home.png)
 
