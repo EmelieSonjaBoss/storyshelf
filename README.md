@@ -42,7 +42,7 @@ Storyshelf is a fullstack web-based book review platform where users can browse 
 ##  Installation
 
 ```bash
-git clone https://github.com/MalinRosenquist/storyshelf-app
+git clone https://github.com/EmelieSonjaBoss/storyshelf
 cd storyshelf
 npm install
 ```
